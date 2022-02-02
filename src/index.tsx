@@ -1,17 +1,32 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
+import { Provider } from 'react-redux';
+import { store } from "./state/store";
+import { initializeApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore";
 
+
+//FIREBASE INIT
+const firebaseConfig = {
+  apiKey: "AIzaSyD4Vh-Z6AWXgOOnwKlU77gAGG39cVZL0rE",
+  authDomain: "quizology-7a3a4.firebaseapp.com",
+  projectId: "quizology-7a3a4",
+  storageBucket: "quizology-7a3a4.appspot.com",
+  messagingSenderId: "668641186513",
+  appId: "1:668641186513:web:fbc74f9e506e3f8c85ebf0",
+  measurementId: "G-KWQGWS0GV0"
+};
+
+const app = initializeApp(firebaseConfig);
+export const db = getFirestore();
+
+//REACT RENDER
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
