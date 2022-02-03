@@ -13,6 +13,12 @@ const initialState: AppState = {
         displayName: "Geografia",
         visible: true,
         playable: true
+    },
+    {
+        name: "medicine",
+        displayName: "Medycyna",
+        visible: true,
+        playable: true
     }]
 }
 

@@ -11,6 +11,7 @@ export type Question = {
 }
 export type QuestionProposition = {
     category: string | null,
+    displayedCategory: string | null,
     text: string,
     correct: string[],
     incorrect: string[]

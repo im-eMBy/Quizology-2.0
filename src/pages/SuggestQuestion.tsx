@@ -2,43 +2,73 @@ import { useSelector } from "react-redux";
 import { actionCreators } from '../state/action-creators';
 import { bindActionCreators } from 'redux';
 import { useDispatch } from 'react-redux';
+import { useRef, useState, useEffect } from "react";
 import { RootState } from "../state/reducers";
 import { Category } from "../shared/types";
 
- export const SuggestQuestion:React.FC = () => {
+export const SuggestQuestion: React.FC = () => {
    const dispatch = useDispatch();
-    const { suggestSetCategory, suggestSetText } = bindActionCreators(actionCreators, dispatch);
-    const { category, text } = useSelector((state: RootState) => state.suggest);
-    const { categories } = useSelector((state: RootState) => state.app);
+   const { suggestSetCategory, suggestSetDisplayedCategory, suggestSetText, suggestAddCorrect, suggestAddIncorrect } = bindActionCreators(actionCreators, dispatch);
+   const { text, displayedCategory } = useSelector((state: RootState) => state.suggest);
+   const { categories } = useSelector((state: RootState) => state.app);
 
+   const categorySelectElement = useRef<HTMLSelectElement>(null);
+   const correctInputElement = useRef<HTMLInputElement>(null);
+   const incorrectInputElement = useRef<HTMLInputElement>(null);
 
+   const [newCorrect, setNewCorrect] = useState<string>("");
+   const [newIncorrect, setNewIncorrect] = useState<string>("");
 
-    const getCategoriesList = () => {
-      return categories.map((category: Category) => {
-           return <option key={category.name} value={category.name}>{category.displayName}</option>
-       })
+   useEffect(() => {
+      suggestSetDisplayedCategory(categories[0].displayName);
+      suggestSetCategory(categories[0].name);
+   }, [categories]) // eslint-disable-line react-hooks/exhaustive-deps
+
+   const handleCategoryChange = () => {
+      if (categorySelectElement && categorySelectElement.current) {
+         suggestSetCategory(categorySelectElement.current.value);
+         suggestSetDisplayedCategory(categorySelectElement.current.options[categorySelectElement.current.selectedIndex].text);
+      }
+   }
+   const handleAddCorrect = () => {
+      if (newCorrect === "''") return
+      suggestAddCorrect(newCorrect);
+      setNewCorrect("");
+      if (correctInputElement && correctInputElement.current) correctInputElement.current.focus();
+   }
+   const handleAddIncorrect = () => {
+      if (newIncorrect === "") return
+      suggestAddIncorrect(newIncorrect);
+      setNewIncorrect("");
+      if (incorrectInputElement && incorrectInputElement.current) incorrectInputElement.current.focus();
    }
 
-    return <div className='suggest__container-outer'>
-    {/* <SuggestQuestionValidate questionData={question} onSend={handleQuestionSend}/> */}
-    <div className='suggest__container-inner'>
-        {/* <SuggestQuestionPreview questionData={question} categoryName={categoryName} onDelete={handleAnswerDelete}/> */}
-        <div className='suggest__form'>
+   const getCategoriesList = () => {
+      return categories.map((category: Category) => {
+         return <option key={category.name} value={category.name}>{category.displayName}</option>
+      })
+   }
+
+   return <div className='suggest__container-outer'>
+      {/* <SuggestQuestionValidate questionData={question} onSend={handleQuestionSend}/> */}
+      <div className='suggest__container-inner'>
+         {/* <SuggestQuestionPreview questionData={question} categoryName={categoryName} onDelete={handleAnswerDelete}/> */}
+         <div className='suggest__form'>
+            <h1>{displayedCategory}</h1>
             <h3>Kategoria:</h3>
-            <select onChange={(ev) => suggestSetCategory(ev.target.value)}>
-                {getCategoriesList()}
+            <select ref={categorySelectElement} onChange={() => handleCategoryChange()}>
+               {getCategoriesList()}
             </select>
             <h3>Treść pytania:</h3>
             <textarea cols={20} rows={8} value={text}
-                      onChange={ev => suggestSetText(ev.target.value)}/>
-            {/* <h3>Dodaj prawidłową odpowiedź</h3>
-            <input type="text" ref={correctInput} value={correctValue} onChange={ev => handleCorrectChange(ev)}/>
+               onChange={ev => suggestSetText(ev.target.value)} />
+            <h3>Dodaj prawidłową odpowiedź</h3>
+            <input ref={correctInputElement} type="text" value={newCorrect} onChange={ev => setNewCorrect(ev.target.value)} />
             <button onClick={() => handleAddCorrect()}>Dodaj</button>
             <h3>Dodaj nieprawidłową odpowiedź</h3>
-            <input type="text" ref={incorrectInput} value={incorrectValue}
-                   onChange={ev => handleIncorrectChange(ev)}/>
-            <button onClick={() => handleAddIncorrect()}>Dodaj</button> */}
-        </div>
-    </div>
-</div>
- }
+            <input ref={incorrectInputElement} type="text" value={newIncorrect} onChange={ev => setNewIncorrect(ev.target.value)} />
+            <button onClick={() => handleAddIncorrect()}>Dodaj</button>
+         </div>
+      </div>
+   </div>
+}

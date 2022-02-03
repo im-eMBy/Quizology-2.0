@@ -26,6 +26,14 @@ export const suggestSetCategory = (category: string) => {
         })
     }
 }
+export const suggestSetDisplayedCategory = (displayedCategory: string) => {
+    return (dispatch: Dispatch<SuggestAction>) => {
+        dispatch({
+            type: ActionTypes.SUGGEST_SET_DISPLAYED_CATEGORY,
+            displayedCategory: displayedCategory
+        })
+    }
+}
 export const suggestSetText = (text: string) => {
     return (dispatch: Dispatch<SuggestAction>) => {
         dispatch({
@@ -47,6 +55,22 @@ export const suggestRemoveCorrect = (correct: string) => {
         dispatch({
             type: ActionTypes.SUGGEST_REMOVE_CORRECT,
             correct: correct
+        })
+    }
+}
+export const suggestAddIncorrect = (incorrect: string) => {
+    return (dispatch: Dispatch<SuggestAction>) => {
+        dispatch({
+            type: ActionTypes.SUGGEST_ADD_INCORRECT,
+            incorrect: incorrect
+        })
+    }
+}
+export const suggestRemoveIncorrect = (incorrect: string) => {
+    return (dispatch: Dispatch<SuggestAction>) => {
+        dispatch({
+            type: ActionTypes.SUGGEST_REMOVE_INCORRECT,
+            incorrect: incorrect
         })
     }
 }
