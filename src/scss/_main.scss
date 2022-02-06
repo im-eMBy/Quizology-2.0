@@ -1,0 +1,36 @@
+@use "./colors";
+
+html {
+    // font-family: DosisSemibold, sans-serif;
+    font-size: 18px;
+  }
+  body {
+    overflow-x: hidden;
+  }
+  #app {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  .main {
+    // position: relative;
+    width: 100%;
+    flex-grow: 1;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center bottom;
+  }
+  button {
+    font-family: inherit;
+    padding: 0.5em 1em;
+    font-size: 1rem;
+    color: $color-white;
+    border: none;
+    border-radius: 1em;
+    background-color: $color-blue;
+    cursor: pointer;
+    &:hover {
+      background-color: lighten($color-blue, 20%);
+    }
+  }

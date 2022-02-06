@@ -2,7 +2,7 @@ import { Category } from "../../shared/types";
 import { ActionTypes, AppAction } from "../action-types";
 
 interface AppState {
-    page: "Play" | "Suggest",
+    page: "Play" | "Suggest" | "Admin",
     categories: Category[]
 }
 

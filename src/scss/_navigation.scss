@@ -1,0 +1,43 @@
+@import "./colors";
+
+.navigation {
+    background-color: $color-blue;
+    height: 70px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    ul {
+        height: 100%;
+        min-width: 50%;
+        list-style: none;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        margin-right: 1rem;
+    }
+}
+.navigation__logo {
+    //   font-family: AvocadoTaco, sans-serif;
+    font-size: 2rem;
+    font-weight: 400;
+    color: $color-white;
+    margin-left: 1rem;
+    span {
+        color: $color-red;
+
+        &:nth-child(2n) {
+            color: $color-green;
+        }
+    }
+}
+.navigation__element {
+    height: 100%;
+    button {
+        border-radius: 0;
+        height: 100%;
+    }
+    &--active {
+        background-color: $color-yellow;
+    }
+}

@@ -1,7 +1,7 @@
 import { ActionTypes, AppAction, SuggestAction } from "../action-types";
 import { Dispatch } from "redux";
 
-export const appSetPage = (page: "Play" | "Suggest") => {
+export const appSetPage = (page: "Play" | "Suggest" | "Admin") => {
     return (dispatch: Dispatch<AppAction>) => {
         dispatch({
             type: ActionTypes.APP_SET_PAGE,

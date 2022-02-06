@@ -15,7 +15,7 @@ export enum ActionTypes {
 
 export type ActionAppSetPage = {
     type: ActionTypes.APP_SET_PAGE,
-    page: "Play" | "Suggest"
+    page: "Play" | "Suggest" | "Admin"
 }
 export type ActionAppSetCategories = {
     type: ActionTypes.APP_SET_CATEGORIES,
