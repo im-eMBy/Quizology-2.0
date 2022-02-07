@@ -9,7 +9,7 @@ import { Category } from "../shared/types";
 export const SuggestForm: React.FC = () => {
     const dispatch = useDispatch();
     const { suggestSetCategory, suggestSetDisplayedCategory, suggestSetText, suggestAddCorrect, suggestAddIncorrect } = bindActionCreators(actionCreators, dispatch);
-    const { text } = useSelector((state: RootState) => state.suggest);
+    const { text, displayedCategory, category } = useSelector((state: RootState) => state.suggest);
     const { categories } = useSelector((state: RootState) => state.app);
 
     const categorySelectElement = useRef<HTMLSelectElement>(null);
@@ -20,9 +20,12 @@ export const SuggestForm: React.FC = () => {
     const [newIncorrect, setNewIncorrect] = useState<string>("");
 
     useEffect(() => {
-        suggestSetDisplayedCategory(categories[0].displayName);
-        suggestSetCategory(categories[0].name);
-    }, [categories]) // eslint-disable-line react-hooks/exhaustive-deps
+        if (displayedCategory === null || category === null) {
+            suggestSetDisplayedCategory(categories[0].displayName);
+            suggestSetCategory(categories[0].name);
+        }
+        if (category !== null && categorySelectElement.current) categorySelectElement.current.value = category;
+    }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
     const handleCategoryChange = () => {
         if (categorySelectElement && categorySelectElement.current) {
@@ -43,13 +46,13 @@ export const SuggestForm: React.FC = () => {
         if (incorrectInputElement && incorrectInputElement.current) incorrectInputElement.current.focus();
     }
 
-    const getCategoriesList = () => {
+    const getCategoriesList = (): JSX.Element[] => {
         return categories.map((category: Category) => {
             return <option key={category.name} value={category.name}>{category.displayName}</option>
         })
     }
 
-    return <div className='suggest__form'>
+    return <div className='suggest__form container'>
         <h3>Kategoria:</h3>
         <select ref={categorySelectElement} onChange={() => handleCategoryChange()}>
             {getCategoriesList()}
