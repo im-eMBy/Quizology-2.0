@@ -18,11 +18,12 @@
     }
 }
 .navigation__logo {
-      font-family: AvocadoTaco, sans-serif;
+    font-family: AvocadoTaco, sans-serif;
     font-size: 2rem;
     font-weight: 400;
     color: $color-white;
     margin-left: 1rem;
+    padding: 0 1rem;
     span {
         color: $color-red;
 
@@ -36,6 +37,9 @@
     button {
         border-radius: 0;
         height: 100%;
+        &:hover {
+            background-color: lighten($color-blue, 20%);
+          }
     }
     &--active {
         background-color: $color-yellow;

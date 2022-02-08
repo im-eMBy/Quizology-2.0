@@ -8,7 +8,6 @@ export const SuggestQuestion: React.FC = () => {
 
 
    return <div className='suggest__container-outer'>
-      {/* <SuggestQuestionValidate questionData={question} onSend={handleQuestionSend}/> */}
       <div className='suggest__container-inner'>
          <SuggestPreview />
          <SuggestForm />

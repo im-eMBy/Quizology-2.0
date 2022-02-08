@@ -36,7 +36,4 @@ html {
     border-radius: 1em;
     background-color: $color-blue;
     cursor: pointer;
-    &:hover {
-      background-color: lighten($color-blue, 20%);
-    }
   }

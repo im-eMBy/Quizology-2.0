@@ -70,12 +70,16 @@
         border-radius: 20px;
         outline: none;
         padding: 5px;
+        resize: none;
         &:focus {
             background-color: fade-out($color-blue, 0.8);
         }
     }
     button {
         max-width: 120px;
+        &:hover {
+            background-color: lighten($color-blue, 20%);
+          }
     }
 }
 .suggest__validate {
@@ -104,6 +108,17 @@
                 width: 1em;
                 position: absolute;
                 transform: translateX(-120%);
+            }
+        }
+    }
+    .suggest__send-button {
+        background-color: $color-red;
+        cursor: default;
+        &--active {
+            background-color: $color-blue;
+            cursor: pointer;
+            &:hover {
+                background-color: lighten($color-blue, 20%);
             }
         }
     }

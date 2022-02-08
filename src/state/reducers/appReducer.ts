@@ -8,18 +8,7 @@ interface AppState {
 
 const initialState: AppState = {
     page: "Suggest",
-    categories: [{
-        name: "geography",
-        displayName: "Geografia",
-        visible: true,
-        playable: true
-    },
-    {
-        name: "medicine",
-        displayName: "Medycyna",
-        visible: true,
-        playable: true
-    }]
+    categories: []
 }
 
 export const appReducer = (state: AppState = initialState, action: AppAction) => {
