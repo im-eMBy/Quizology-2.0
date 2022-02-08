@@ -1,7 +1,6 @@
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { actionCreators } from '../state/action-creators';
 import { bindActionCreators } from 'redux';
-import { useDispatch } from 'react-redux';
 import { useRef, useState, useEffect } from "react";
 import { RootState } from "../state/reducers";
 import { Category } from "../shared/types";

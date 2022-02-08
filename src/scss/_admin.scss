@@ -11,7 +11,7 @@
         display: flex;
         gap: 10px;
     }
-    button:hover {
+    .admin-categories__add-button:hover {
         background-color: lighten($color-blue, 20%);
     }
 }
