@@ -2,6 +2,7 @@ import { Category, QuestionProposition } from "../shared/types";
 
 export enum ActionTypes {
     APP_SET_PAGE = "appSetPage",
+    APP_SET_ADMIN_SUB_PAGE = "appSetAdminSubPage",
     APP_SET_CATEGORIES = "appSetCategories",
 
     SUGGEST_SET_CATEGORY = "suggestSetCategory",
@@ -16,6 +17,10 @@ export enum ActionTypes {
 export type ActionAppSetPage = {
     type: ActionTypes.APP_SET_PAGE,
     page: "Play" | "Suggest" | "Admin"
+}
+export type ActionAppSetAdminSubPage = {
+    type: ActionTypes.APP_SET_ADMIN_SUB_PAGE,
+    subpage: "Propositions" | "Categories" | "AddCategory"
 }
 export type ActionAppSetCategories = {
     type: ActionTypes.APP_SET_CATEGORIES,
@@ -51,7 +56,7 @@ export type ActionSuggestRemoveIncorrect = {
     incorrect: string
 }
 
-export type AppAction = ActionAppSetPage | ActionAppSetCategories
+export type AppAction = ActionAppSetPage | ActionAppSetAdminSubPage | ActionAppSetCategories
 
 export type SuggestAction = ActionSuggestSetCategory | ActionSuggestSetDisplayedCategory | ActionSuggestSetText | ActionSuggestAddCorrect | ActionSuggestRemoveCorrect | ActionSuggestAddIncorrect | ActionSuggestRemoveIncorrect
 

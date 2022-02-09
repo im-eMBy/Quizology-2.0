@@ -9,6 +9,14 @@ export const appSetPage = (page: "Play" | "Suggest" | "Admin") => {
         })
     }
 }
+export const appSetAdminSubPage = (subpage: "Propositions" | "Categories" | "AddCategory") => {
+    return (dispatch: Dispatch<AppAction>) => {
+        dispatch({
+            type: ActionTypes.APP_SET_ADMIN_SUB_PAGE,
+            subpage: subpage
+        })
+    }
+}
 export const appSetCategories = (categories: []) => {
     return (dispatch: Dispatch<AppAction>) => {
         dispatch({

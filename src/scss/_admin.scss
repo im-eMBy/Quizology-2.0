@@ -1,17 +1,54 @@
 @import "./colors";
 
-.admin-categories__add-category {
+.admin__navigation {
+    background-color: $color-blue;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    ul {
+        list-style: none;
+        display: flex;
+    }
+    button {
+        border-radius: 0;
+        height: 100%;
+        &:hover {
+            background-color: lighten($color-blue, 20%);
+        }
+    }
+}
+.admin__container-inner {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+.admin__categories-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.admin__category {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    width: 200px;
+}
+.admin__add-category {
     width: fit-content;
     min-width: 50%;
     display: flex;
     flex-direction: column;
     align-items: center;
+
     gap: 10px;
     div {
         display: flex;
         gap: 10px;
     }
-    .admin-categories__add-button:hover {
+    .admin__add-button:hover {
         background-color: lighten($color-blue, 20%);
     }
 }

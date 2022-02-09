@@ -1,11 +1,33 @@
-import { AdminCategories } from "../components/AdminCategories";
+import { useSelector } from "react-redux";
+import { RootState } from "../state/reducers";
 
-export const AdminPanel:React.FC = () => {
+import { AdminNavigation } from "../components/AdminNavigation";
+import { AdminCategories } from "../components/AdminCategories";
+import { AdminAddCategory } from "../components/AdminAddCategory";
+
+import "../scss/_admin.scss";
+
+
+export const AdminPanel: React.FC = () => {
+    const { adminSubPage } = useSelector((state: RootState) => state.app);
+
+    const getContent = (): JSX.Element => {
+        switch (adminSubPage) {
+            case "Propositions":
+                return <h2>Propositions</h2>
+            case "Categories":
+                return <AdminCategories />
+            case "AddCategory":
+                return <AdminAddCategory />
+            default:
+                return <h2>Propositions</h2>
+        }
+    }
 
     return <div className="admin__container-outer">
-        <nav className="admin__nav"></nav>
+        <AdminNavigation />
         <div className="admin__container-inner">
-            <AdminCategories />
+            {getContent()}
         </div>
     </div>
 }

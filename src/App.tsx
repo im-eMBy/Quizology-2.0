@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { bindActionCreators } from "redux";
 import { actionCreators } from "./state/action-creators";
 import { RootState } from "./state/reducers";
 
@@ -16,11 +15,16 @@ import "./scss/index.scss";
 const App: React.FC = () => {
   const dispatch = useDispatch();
   const { page } = useSelector((state: RootState) => state.app);
-  const { appSetCategories } = bindActionCreators(actionCreators, dispatch);
+  const { appSetCategories } = actionCreators;
 
   useEffect(() => {
-    getCategories(appSetCategories);
-  }, []) // eslint-disable-line react-hooks/exhaustive-deps
+    const fetchCategories = async () => {
+      const categories = await getCategories();
+      dispatch(appSetCategories(categories));
+    }
+    fetchCategories()
+    .catch(console.error);
+  }, [appSetCategories, dispatch]) 
 
   const getContent = (): JSX.Element => {
     switch (page) {

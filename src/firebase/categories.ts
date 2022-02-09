@@ -1,4 +1,4 @@
-import { doc, updateDoc, arrayUnion, arrayRemove, getDoc } from "firebase/firestore";
+import { doc, updateDoc, arrayUnion, arrayRemove, getDoc, onSnapshot } from "firebase/firestore";
 import { db } from "../index";
 import { Category } from "../shared/types";
 
@@ -7,11 +7,15 @@ export const addCategory = (category: Category) => {
         categories: arrayUnion(category)
     })
 }
-
-export const getCategories = async (callback: Function) => {
+export const getCategories = async () => {
     const docSnap = await getDoc(doc(db, "categories", "categories"));
-    if(docSnap.exists()) {
+    if (docSnap.exists()) {
         const categories = docSnap.data().categories;
-        callback(categories);
+        return categories;
     }
+}
+export const deleteCategory = (category: Category) => {
+    updateDoc(doc(db, "categories", "categories"), {
+        categories: arrayRemove(category)
+    })
 }
