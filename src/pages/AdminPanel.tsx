@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import { RootState } from "../state/reducers";
 
+import { AdminLogin } from "../components/AdminLogin";
 import { AdminNavigation } from "../components/AdminNavigation";
 import { AdminCategories } from "../components/AdminCategories";
 import { AdminAddCategory } from "../components/AdminAddCategory";
@@ -9,10 +10,10 @@ import { AdminPropositions } from "../components/AdminPropositions";
 import "../scss/_admin.scss";
 
 export const AdminPanel: React.FC = () => {
-    const { adminSubPage } = useSelector((state: RootState) => state.app);
+    const { subpage, password } = useSelector((state: RootState) => state.admin);
 
     const getContent = (): JSX.Element => {
-        switch (adminSubPage) {
+        switch (subpage) {
             case "Propositions":
                 return <AdminPropositions />
             case "Categories":
@@ -20,10 +21,10 @@ export const AdminPanel: React.FC = () => {
             case "AddCategory":
                 return <AdminAddCategory />
             default:
-                return <h2>Propositions</h2>
+                return <AdminLogin />
         }
     }
-
+    if (password !== process.env.REACT_APP_ADMIN_PASSWORD) return <AdminLogin />
     return <div className="admin__container-outer">
         <AdminNavigation />
         <div className="admin__container-inner">

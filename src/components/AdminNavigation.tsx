@@ -4,18 +4,18 @@ import { bindActionCreators } from 'redux';
 
 export const AdminNavigation: React.FC = () => {
     const dispatch = useDispatch();
-    const { appSetAdminSubPage } = bindActionCreators(actionCreators, dispatch);
+    const { adminSetSubPage } = bindActionCreators(actionCreators, dispatch);
 
     return <nav className="admin__navigation">
         <ul>
             <li className="admin__navigation-element">
-                <button onClick={() => appSetAdminSubPage("Propositions")}>Propozycje</button>
+                <button onClick={() => adminSetSubPage("Propositions")}>Propozycje</button>
             </li>
             <li className="admin__navigation-element">
-                <button onClick={() => appSetAdminSubPage("Categories")}>Kategorie</button>
+                <button onClick={() => adminSetSubPage("Categories")}>Kategorie</button>
             </li>
             <li className="admin__navigation-element">
-                <button onClick={() => appSetAdminSubPage("AddCategory")}>Dodaj Kategorię</button>
+                <button onClick={() => adminSetSubPage("AddCategory")}>Dodaj Kategorię</button>
             </li>
         </ul>
     </nav>

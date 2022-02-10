@@ -19,9 +19,6 @@ export const Navigation: React.FC = () => {
             <li className="navigation__element">
                 <button onClick={() => appSetPage("Suggest")}>Zaproponuj pytanie</button>
             </li>
-            <li className="navigation__element">
-                <button onClick={() => appSetPage("Admin")}>Admin</button>
-            </li>
         </ul>
     </nav>
 }

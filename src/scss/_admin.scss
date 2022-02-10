@@ -116,3 +116,30 @@
         }
     }
 }
+//login
+.admin__login {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    div{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        margin-top: 30px;
+        min-width: 50%;
+    }
+    input {
+        min-width: 50%;
+        border: 2px solid black;
+        border-radius: 20px;
+        outline: none;
+        padding: 5px;
+        &:focus {
+            background-color: fade-out($color-blue, 0.8);
+        }
+    }
+    button:hover {
+        background-color: lighten($color-blue, 20%);
+      }
+}

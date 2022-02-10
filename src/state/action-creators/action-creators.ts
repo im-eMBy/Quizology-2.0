@@ -1,4 +1,4 @@
-import { ActionTypes, AppAction, SuggestAction } from "../action-types";
+import { ActionTypes, AppAction, SuggestAction, AdminAction } from "../action-types";
 import { Dispatch } from "redux";
 
 export const appSetPage = (page: "Play" | "Suggest" | "Admin") => {
@@ -6,14 +6,6 @@ export const appSetPage = (page: "Play" | "Suggest" | "Admin") => {
         dispatch({
             type: ActionTypes.APP_SET_PAGE,
             page: page
-        })
-    }
-}
-export const appSetAdminSubPage = (subpage: "Propositions" | "Categories" | "AddCategory") => {
-    return (dispatch: Dispatch<AppAction>) => {
-        dispatch({
-            type: ActionTypes.APP_SET_ADMIN_SUB_PAGE,
-            subpage: subpage
         })
     }
 }
@@ -79,6 +71,22 @@ export const suggestRemoveIncorrect = (incorrect: string) => {
         dispatch({
             type: ActionTypes.SUGGEST_REMOVE_INCORRECT,
             incorrect: incorrect
+        })
+    }
+}
+export const adminSetSubPage = (subpage: "Propositions" | "Categories" | "AddCategory") => {
+    return (dispatch: Dispatch<AdminAction>) => {
+        dispatch({
+            type: ActionTypes.ADMIN_SET_SUB_PAGE,
+            subpage: subpage
+        })
+    }
+}
+export const adminSetPassword = (password: string) => {
+    return (dispatch: Dispatch<AdminAction>) => {
+        dispatch({
+            type: ActionTypes.ADMIN_SET_PASSWORD,
+            password: password
         })
     }
 }
