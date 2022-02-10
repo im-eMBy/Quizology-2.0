@@ -1,11 +1,19 @@
 import { useSelector } from "react-redux";
 import { RootState } from "../state/reducers";
 
+import { addProposition } from "../firebase/propositions";
+
 export const SuggestValidate: React.FC = () => {
-    const { text, correct, incorrect } = useSelector((state: RootState) => state.suggest);
+    const { text, correct, incorrect, category, displayedCategory } = useSelector((state: RootState) => state.suggest);
 
     const handlePropositionSend = () => {
-        console.log("test");
+        addProposition({
+            category: category,
+            displayedCategory: displayedCategory,
+            text: text,
+            correct: correct,
+            incorrect: incorrect
+        })
     }
 
     const validationMesseges: string[] = [];
@@ -29,6 +37,6 @@ export const SuggestValidate: React.FC = () => {
         <ul>
             {getValidationMessages()}
         </ul>
-        <button className={isButtonActive ? "suggest__send-button suggest__send-button--active" : "suggest__send-button"} onClick={isButtonActive ? handlePropositionSend : undefined}>Wyślij pytanie</button>
+        <button className={isButtonActive ? "suggest__send-button suggest__send-button--active" : "suggest__send-button"} onClick={isButtonActive ? () => handlePropositionSend() : undefined}>Wyślij pytanie</button>
     </div>
 }

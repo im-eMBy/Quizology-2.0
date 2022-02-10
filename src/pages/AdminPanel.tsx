@@ -4,9 +4,9 @@ import { RootState } from "../state/reducers";
 import { AdminNavigation } from "../components/AdminNavigation";
 import { AdminCategories } from "../components/AdminCategories";
 import { AdminAddCategory } from "../components/AdminAddCategory";
+import { AdminPropositions } from "../components/AdminPropositions";
 
 import "../scss/_admin.scss";
-
 
 export const AdminPanel: React.FC = () => {
     const { adminSubPage } = useSelector((state: RootState) => state.app);
@@ -14,7 +14,7 @@ export const AdminPanel: React.FC = () => {
     const getContent = (): JSX.Element => {
         switch (adminSubPage) {
             case "Propositions":
-                return <h2>Propositions</h2>
+                return <AdminPropositions />
             case "Categories":
                 return <AdminCategories />
             case "AddCategory":

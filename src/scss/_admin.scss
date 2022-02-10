@@ -24,6 +24,7 @@
     align-items: center;
     gap: 20px;
 }
+//categories
 .admin__categories-container {
     display: flex;
     flex-wrap: wrap;
@@ -36,6 +37,7 @@
     gap: 10px;
     width: 200px;
 }
+//add category
 .admin__add-category {
     width: fit-content;
     min-width: 50%;
@@ -50,5 +52,68 @@
     }
     .admin__add-button:hover {
         background-color: lighten($color-blue, 20%);
+    }
+}
+//propositions
+.admin__propositions {
+    width: 100%;
+}
+.admin__propositions-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+.admin__proposition {
+    width: 50%;
+    display: flex;
+    justify-content: space-evenly;
+    gap: 20px;
+    &-data {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+    &-buttons {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+    }
+    &-answers {
+        display: flex;
+        gap: 20px;
+        div {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+    }
+    &-correct {
+        padding: 0.5em 1em;
+        background-color: $color-green;
+        border-radius: 20px;
+    }
+    &-incorrect {
+        padding: 0.5em 1em;
+        background-color: $color-red;
+        border-radius: 20px;
+    }
+    &-add-button {
+        background-color: $color-green;
+        transition-duration: 0.3s;
+        &:hover {
+            background-color: lighten($color-green, 20%);
+        }
+    }
+    &-reject-button {
+        background-color: $color-red;
+        transition-duration: 0.3s;
+        &:hover {
+            background-color: lighten($color-red, 20%);
+        }
     }
 }

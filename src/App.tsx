@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators } from "./state/action-creators";
 import { RootState } from "./state/reducers";
@@ -16,17 +16,20 @@ const App: React.FC = () => {
   const dispatch = useDispatch();
   const { page } = useSelector((state: RootState) => state.app);
   const { appSetCategories } = actionCreators;
+  const [ isLoaded, setIsLoaded ] = useState(false);
 
   useEffect(() => {
     const fetchCategories = async () => {
       const categories = await getCategories();
       dispatch(appSetCategories(categories));
+      setIsLoaded(true);
     }
     fetchCategories()
     .catch(console.error);
   }, [appSetCategories, dispatch]) 
 
   const getContent = (): JSX.Element => {
+    if(!isLoaded) return <h1>Loading</h1>
     switch (page) {
       case "Play":
         return <h1>Play</h1>
