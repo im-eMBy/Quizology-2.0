@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from "react"
 import { QuestionProposition } from "../shared/types";
-import { getPropositionsAndListen } from "../firebase/propositions";
+import { getPropositionsAndListen, deleteProposition } from "../firebase/propositions";
+import { addQuestion } from "../firebase/questions";
 
 export const AdminPropositions: React.FC = () => {
     const [propositions, setPropositions] = useState<QuestionProposition[]>([]);
@@ -14,6 +15,14 @@ export const AdminPropositions: React.FC = () => {
         const unsubscribe = propositionsListener();
         return () => unsubscribe();
     }, [propositionsListener])
+
+    const handlePropositionAdd = (proposition: QuestionProposition) => {
+        addQuestion(proposition);
+        deleteProposition(proposition);
+    }
+    const handlePropositionReject = (proposition: QuestionProposition) => {
+        deleteProposition(proposition);
+    }
 
     const getPropositionsDisplayed = (): JSX.Element[] => {
         const propsToDisplay = displayedCategory === "" ? propositions : propositions.filter((el: QuestionProposition) => el.displayedCategory === displayedCategory);
@@ -31,8 +40,8 @@ export const AdminPropositions: React.FC = () => {
                 </div>
             </div>
             <div className="admin__proposition-buttons">
-                <button className="admin__proposition-add-button">Akceptuj</button>
-                <button className="admin__proposition-reject-button">Odrzuć</button>
+                <button className="admin__proposition-add-button" onClick={() => handlePropositionAdd(proposition)}>Akceptuj</button>
+                <button className="admin__proposition-reject-button" onClick={() => handlePropositionReject(proposition)}>Odrzuć</button>
             </div>
         </div>)
     }

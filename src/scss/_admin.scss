@@ -92,15 +92,14 @@
             flex-wrap: wrap;
         }
     }
-    &-correct {
+    &-correct, &-incorrect {
         padding: 0.5em 1em;
+        color: $color-white;
         background-color: $color-green;
         border-radius: 20px;
     }
     &-incorrect {
-        padding: 0.5em 1em;
         background-color: $color-red;
-        border-radius: 20px;
     }
     &-add-button {
         background-color: $color-green;
