@@ -3,12 +3,14 @@ import { ActionTypes, AppAction } from "../action-types";
 
 interface AppState {
     page: "Play" | "Suggest" | "Admin",
-    categories: Category[]
+    categories: Category[],
+    isQuizActive: boolean
 }
 
 const initialState: AppState = {
     page: "Suggest",
-    categories: []
+    categories: [],
+    isQuizActive: false
 }
 
 export const appReducer = (state: AppState = initialState, action: AppAction) => {
@@ -17,6 +19,8 @@ export const appReducer = (state: AppState = initialState, action: AppAction) =>
             return { ...state, page: action.page }
         case ActionTypes.APP_SET_CATEGORIES:
             return { ...state, categories: action.categories }
+        case ActionTypes.APP_SET_QUIZ_ACTIVE:
+            return { ...state, isQuizActive: action.isActive }
         default:
             return state
     }

@@ -1,6 +1,8 @@
-import { ActionTypes, AppAction, SuggestAction, AdminAction } from "../action-types";
+import { ActionTypes, AppAction, SuggestAction, AdminAction, QuizAction } from "../action-types";
 import { Dispatch } from "redux";
+import { Category, Question } from "../../shared/types";
 
+//app
 export const appSetPage = (page: "Play" | "Suggest" | "Admin") => {
     return (dispatch: Dispatch<AppAction>) => {
         dispatch({
@@ -17,7 +19,15 @@ export const appSetCategories = (categories: []) => {
         })
     }
 }
-
+export const appSetQuizActive = (isActive: boolean) => {
+    return (dispatch: Dispatch<AppAction>) => {
+        dispatch({
+            type: ActionTypes.APP_SET_QUIZ_ACTIVE,
+            isActive: isActive
+        })
+    }
+}
+//suggest
 export const suggestSetCategory = (category: string) => {
     return (dispatch: Dispatch<SuggestAction>) => {
         dispatch({
@@ -81,6 +91,34 @@ export const suggestResetForm = () => {
         })
     }
 }
+//quiz
+export const quizInit = (category: Category, nrOfQuestions: number, time: number) => {
+    return (dispatch: Dispatch<QuizAction>) => {
+        dispatch({
+            type: ActionTypes.QUIZ_INIT,
+            category: category,
+            time: time,
+            nrOfQuestions: nrOfQuestions
+        })
+    }
+}
+export const quizSetQuestions = (questions: Question[]) => {
+    return (dispatch: Dispatch<QuizAction>) => {
+        dispatch({
+            type: ActionTypes.QUIZ_SET_QUESTIONS,
+            questions: questions
+        })
+    }
+}
+export const quizSetCurrentQuestion = (currentQuestion: Question) => {
+    return (dispatch: Dispatch<QuizAction>) => {
+        dispatch({
+            type: ActionTypes.QUIZ_SET_CURRENT_QUESTION,
+            currentQuestion: currentQuestion
+        })
+    }
+}
+//admin
 export const adminSetSubPage = (subpage: "Propositions" | "Categories" | "AddCategory") => {
     return (dispatch: Dispatch<AdminAction>) => {
         dispatch({

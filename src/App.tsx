@@ -7,6 +7,7 @@ import { getCategories } from "./firebase/categories";
 
 import { Navigation } from "./components/Navigation";
 import { Footer } from "./components/Footer";
+import { Play } from "./pages/Play";
 import { SuggestQuestion } from "./pages/SuggestQuestion";
 import { AdminPanel } from "./pages/AdminPanel";
 
@@ -32,13 +33,13 @@ const App: React.FC = () => {
     if(!isLoaded) return <h1>Loading</h1>
     switch (page) {
       case "Play":
-        return <h1>Play</h1>
+        return <Play />
       case "Suggest":
         return <SuggestQuestion />
       case "Admin":
         return <AdminPanel />
       default:
-        return <h1>Play</h1>
+        return <Play />
     }
   }
 
