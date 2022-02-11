@@ -36,6 +36,9 @@
     align-items: center;
     gap: 10px;
     width: 200px;
+    button:hover {
+        background-color: lighten($color-blue, 20%);
+    }
 }
 //add category
 .admin__add-category {
@@ -73,7 +76,7 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 10px;
+        gap: 20px;
     }
     &-buttons {
         display: flex;
@@ -84,7 +87,9 @@
     }
     &-answers {
         display: flex;
-        gap: 20px;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
         div {
             display: flex;
             align-items: center;
@@ -92,7 +97,8 @@
             flex-wrap: wrap;
         }
     }
-    &-correct, &-incorrect {
+    &-correct,
+    &-incorrect {
         padding: 0.5em 1em;
         color: $color-white;
         background-color: $color-green;
@@ -121,7 +127,7 @@
     width: 100%;
     display: flex;
     justify-content: center;
-    div{
+    div {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -141,5 +147,5 @@
     }
     button:hover {
         background-color: lighten($color-blue, 20%);
-      }
+    }
 }

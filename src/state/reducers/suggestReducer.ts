@@ -25,6 +25,8 @@ export const suggestReducer = (state: QuestionProposition = initialState, action
             return { ...state, incorrect: [...state.incorrect, action.incorrect] }
         case ActionTypes.SUGGEST_REMOVE_INCORRECT:
             return { ...state, incorrect: state.incorrect.filter(answer => answer !== action.incorrect) }
+        case ActionTypes.SUGGEST_RESET_FORM:
+            return { ...state, text: initialState.text, correct: initialState.correct, incorrect: initialState.incorrect }
         default:
             return state
     }

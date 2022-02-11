@@ -1,10 +1,13 @@
-import { doc, updateDoc, arrayUnion, arrayRemove, getDoc, onSnapshot } from "firebase/firestore";
+import { doc, updateDoc, arrayUnion, arrayRemove, getDoc, onSnapshot, setDoc } from "firebase/firestore";
 import { db } from "../index";
 import { Category } from "../shared/types";
 
 export const addCategory = (category: Category) => {
     updateDoc(doc(db, "categories", "categories"), {
         categories: arrayUnion(category)
+    })
+    setDoc(doc(db, "questions", category.name), {
+        questions: []
     })
 }
 export const getCategories = async () => {

@@ -1,10 +1,14 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { bindActionCreators } from "redux";
+import { actionCreators } from "../state/action-creators";
 import { RootState } from "../state/reducers";
 
 import { addProposition } from "../firebase/propositions";
 
 export const SuggestValidate: React.FC = () => {
+    const dispatch = useDispatch();
     const { text, correct, incorrect, category, displayedCategory } = useSelector((state: RootState) => state.suggest);
+    const { suggestResetForm } = bindActionCreators(actionCreators, dispatch);
 
     const handlePropositionSend = () => {
         addProposition({
@@ -14,6 +18,7 @@ export const SuggestValidate: React.FC = () => {
             correct: correct,
             incorrect: incorrect
         })
+        suggestResetForm();
     }
 
     const validationMesseges: string[] = [];

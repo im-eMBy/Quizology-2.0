@@ -11,6 +11,7 @@ export enum ActionTypes {
     SUGGEST_REMOVE_CORRECT = "suggestRemoveCorrect",
     SUGGEST_ADD_INCORRECT = "suggestAddInorrect",
     SUGGEST_REMOVE_INCORRECT = "suggestRemoveInorrect",
+    SUGGEST_RESET_FORM = "suggestResetForm",
 
     ADMIN_SET_PASSWORD = "adminSetPassword",
     ADMIN_SET_SUB_PAGE = "adminSetSubPage",
@@ -53,6 +54,9 @@ export type ActionSuggestRemoveIncorrect = {
     type: ActionTypes.SUGGEST_REMOVE_INCORRECT,
     incorrect: string
 }
+export type ActionSuggestResetForm = {
+    type: ActionTypes.SUGGEST_RESET_FORM
+}
 export type ActionAdminSetSubPage = {
     type: ActionTypes.ADMIN_SET_SUB_PAGE,
     subpage: "Propositions" | "Categories" | "AddCategory"
@@ -63,7 +67,7 @@ export type ActionAdminSetPassword = {
 }
 export type AppAction = ActionAppSetPage | ActionAppSetCategories
 
-export type SuggestAction = ActionSuggestSetCategory | ActionSuggestSetDisplayedCategory | ActionSuggestSetText | ActionSuggestAddCorrect | ActionSuggestRemoveCorrect | ActionSuggestAddIncorrect | ActionSuggestRemoveIncorrect
+export type SuggestAction = ActionSuggestSetCategory | ActionSuggestSetDisplayedCategory | ActionSuggestSetText | ActionSuggestAddCorrect | ActionSuggestRemoveCorrect | ActionSuggestAddIncorrect | ActionSuggestRemoveIncorrect | ActionSuggestResetForm
 
 export type AdminAction = ActionAdminSetSubPage | ActionAdminSetPassword
 

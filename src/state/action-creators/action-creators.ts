@@ -74,6 +74,13 @@ export const suggestRemoveIncorrect = (incorrect: string) => {
         })
     }
 }
+export const suggestResetForm = () => {
+    return (dispatch: Dispatch<SuggestAction>) => {
+        dispatch({
+            type: ActionTypes.SUGGEST_RESET_FORM
+        })
+    }
+}
 export const adminSetSubPage = (subpage: "Propositions" | "Categories" | "AddCategory") => {
     return (dispatch: Dispatch<AdminAction>) => {
         dispatch({
