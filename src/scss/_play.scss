@@ -17,6 +17,10 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
+    & * {
+        width: 100%;
+        text-align: center;
+    }
     button:hover {
         background-color: lighten($color-blue, 20%);
     }

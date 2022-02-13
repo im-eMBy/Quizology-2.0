@@ -1,46 +1,37 @@
-# Getting Started with Create React App
+# Quizology
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## LIVE: [LIVE](https://quizology.netlify.app/)
+Note:
+- The site is currently not responsive, I will fix that soon
+- UI is in Polish Language
 
-## Available Scripts
+## About
+Quizology is a quiz app, initialy created as my final project during CoderLab's Javascript Developer Bootcamp. This is the improved version in terms of used technologies and scaling possibilities (that's why I called it 2.0).
 
-In the project directory, you can run:
+## Functionalities
+### User is able to:
+- play quiz
+- suggest questions for defined categories
+### Admin has aditional options and can:
+- add and delete categories
+- accept and reject suggested questions
 
-### `npm start`
+## Stack
+- SCSS
+- Typescript
+- React
+- Redux
+- Firebase
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## To do:
+- responsivness
+- welcome page
+- admin authentication through firebase
+### In the future:
+- Users accounts
+- Statistics
+- Visual themes
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Admin preview
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+![Admin page preview](./readme-img/admin-add-category.png)

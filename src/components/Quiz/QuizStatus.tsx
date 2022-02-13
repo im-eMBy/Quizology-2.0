@@ -23,7 +23,7 @@ export const QuizStatus: React.FC = () => {
         <p>Poprawne odpowiedzi: {correctCount}/{correctCount + incorrectCount} ({percentageOfCorrect}%)</p>
         <QuizResultStripe width={percentageOfCorrect} transitionDuration={0.5} />
         <QuizTimer />
-        {time === 0 ? <p>Pozostałe pytania: {questionsLeft}</p> : null}
+        {time === 0 || isQuizEnd !== true ? <p>Pozostałe pytania: {questionsLeft}</p> : null}
         {isQuizEnd ? <button onClick={() => handleQuizQuit()}>Powrót</button> : null}
     </div>
 }
