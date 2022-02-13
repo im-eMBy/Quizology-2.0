@@ -10,14 +10,15 @@ import { Footer } from "./components/Footer";
 import { Play } from "./pages/Play";
 import { SuggestQuestion } from "./pages/SuggestQuestion";
 import { AdminPanel } from "./pages/AdminPanel";
+import { Quiz } from "./pages/Quiz";
 
 import "./scss/index.scss";
 
 const App: React.FC = () => {
   const dispatch = useDispatch();
-  const { page } = useSelector((state: RootState) => state.app);
+  const { page, isQuizActive } = useSelector((state: RootState) => state.app);
   const { appSetCategories } = actionCreators;
-  const [ isLoaded, setIsLoaded ] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -26,11 +27,11 @@ const App: React.FC = () => {
       setIsLoaded(true);
     }
     fetchCategories()
-    .catch(console.error);
-  }, [appSetCategories, dispatch]) 
+      .catch(console.error);
+  }, [appSetCategories, dispatch])
 
   const getContent = (): JSX.Element => {
-    if(!isLoaded) return <h1>Loading</h1>
+    if (!isLoaded) return <h1>Loading</h1>
     switch (page) {
       case "Play":
         return <Play />
@@ -43,6 +44,10 @@ const App: React.FC = () => {
     }
   }
 
+  if (isQuizActive) return <main className="main">
+    <Quiz />
+  </main>
+  
   return <>
     <Navigation />
     <main className="main">

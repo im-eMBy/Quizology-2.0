@@ -17,3 +17,11 @@ export const addQuestion = (proposition: QuestionProposition) => {
         })
     }
 }
+
+export const getQuestions = async (category: string) => {
+    const docSnap = await getDoc(doc(db, "questions", category));
+    if (docSnap.exists()) {
+        const questions = docSnap.data().questions;
+        return questions;
+    }
+}
