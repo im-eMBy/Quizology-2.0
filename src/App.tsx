@@ -44,10 +44,8 @@ const App: React.FC = () => {
     }
   }
 
-  if (isQuizActive) return <main className="main">
-    <Quiz />
-  </main>
-  
+  if (isQuizActive) return <Quiz />
+
   return <>
     <Navigation />
     <main className="main">

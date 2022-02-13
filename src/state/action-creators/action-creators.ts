@@ -140,6 +140,27 @@ export const quizAddIncorrect = () => {
         })
     }
 }
+export const quizTakeTime = () => {
+    return (dispatch: Dispatch<QuizAction>) => {
+        dispatch({
+            type: ActionTypes.QUIZ_TAKE_TIME
+        })
+    }
+}
+export const quizEnd = () => {
+    return (dispatch: Dispatch<QuizAction>) => {
+        dispatch({
+            type: ActionTypes.QUIZ_END
+        })
+    }
+}
+export const quizReset = () => {
+    return (dispatch: Dispatch<QuizAction>) => {
+        dispatch({
+            type: ActionTypes.QUIZ_RESET
+        })
+    }
+}
 //admin
 export const adminSetSubPage = (subpage: "Propositions" | "Categories" | "AddCategory") => {
     return (dispatch: Dispatch<AdminAction>) => {

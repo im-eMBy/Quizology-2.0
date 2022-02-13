@@ -18,10 +18,12 @@ export enum ActionTypes {
     QUIZ_SET_QUESTIONS = "quizSetQuestions",
     QUIZ_SET_CURRENT_QUESTION = "quizSetCurrentQuestion",
     QUIZ_SET_IS_ANSWER_CLICKED = "quizSetIsAnswerClicked",
+    QUIZ_TAKE_TIME = "quizTakeTime",
     QUIZ_ADD_CORRECT = "quizCorrect",
     QUIZ_ADD_INCORRECT = "quizIncorrect",
     QUIZ_ADD_ANSWER = "quizAddAnswer",
     QUIZ_END = "quizEnd",
+    QUIZ_RESET = "quizReset",
 
     ADMIN_SET_PASSWORD = "adminSetPassword",
     ADMIN_SET_SUB_PAGE = "adminSetSubPage",
@@ -91,6 +93,9 @@ export type ActionQuizSetIsAnswerClicked = {
     type: ActionTypes.QUIZ_SET_IS_ANSWER_CLICKED,
     isClicked: boolean
 }
+export type ActionQuizTakeTime = {
+    type: ActionTypes.QUIZ_TAKE_TIME
+}
 export type ActionQuizAddCorrect = {
     type: ActionTypes.QUIZ_ADD_CORRECT
 }
@@ -103,6 +108,9 @@ export type ActionQuizAddAnswer = {
 }
 export type ActionQuizEnd = {
     type: ActionTypes.QUIZ_END
+}
+export type ActionQuizReset = {
+    type: ActionTypes.QUIZ_RESET
 }
 //admin
 export type ActionAdminSetSubPage = {
@@ -119,6 +127,6 @@ export type SuggestAction = ActionSuggestSetCategory | ActionSuggestSetDisplayed
 
 export type AdminAction = ActionAdminSetSubPage | ActionAdminSetPassword
 
-export type QuizAction = ActionQuizInit | ActionQuizSetQuestions | ActionQuizSetCurrentQuestion | ActionQuizSetIsAnswerClicked | ActionQuizAddCorrect | ActionQuizAddIncorrect | ActionQuizAddAnswer | ActionQuizEnd
+export type QuizAction = ActionQuizInit | ActionQuizSetQuestions | ActionQuizSetCurrentQuestion | ActionQuizSetIsAnswerClicked | ActionQuizTakeTime | ActionQuizAddCorrect | ActionQuizAddIncorrect | ActionQuizAddAnswer | ActionQuizEnd | ActionQuizReset
 
 export type Action = AppAction | SuggestAction | QuizAction | AdminAction

@@ -10,8 +10,8 @@ import { correctAnimation, incorrectAnimation } from "./answerAnimations";
 
 export const QuizQuestion: React.FC = () => {
     const dispatch = useDispatch();
-    const { questions, currentQuestion, correctCount, incorrectCount, isAnswerClicked } = useSelector((state: RootState) => state.quiz);
-    const { quizSetIsAnswerClicked, quizSetCurrentQuestion, quizAddCorrect, quizAddIncorrect } = bindActionCreators(actionCreators, dispatch);
+    const { questions, currentQuestion, isAnswerClicked } = useSelector((state: RootState) => state.quiz);
+    const { quizSetIsAnswerClicked, quizSetCurrentQuestion, quizAddCorrect, quizAddIncorrect, quizEnd } = bindActionCreators(actionCreators, dispatch);
     const [answers, setAnswers] = useState<string[]>([]);
     useEffect(() => {
         if (currentQuestion !== null) {
@@ -38,18 +38,19 @@ export const QuizQuestion: React.FC = () => {
             quizAddIncorrect();
             await incorrectAnimation(answerClicked);
         }
-        answerClicked.style.backgroundColor = "#453F78";
+        if (questions.indexOf(currentQuestion) === questions.length - 1) {
+            quizEnd();
+            return
+        }
         quizSetCurrentQuestion(questions[questions.indexOf(currentQuestion) + 1]);
         quizSetIsAnswerClicked(false);
     }
 
     const getAnswers = (): JSX.Element[] => {
-        return answers.map((answer: string) => <button value={answer} onClick={isAnswerClicked ? undefined : (ev) => handleAnswerClick(ev)}>{answer}</button>)
+        return answers.map((answer: string) => <button key={answer} value={answer} onClick={isAnswerClicked ? undefined : (ev) => handleAnswerClick(ev)}>{answer}</button>)
     }
 
     return <div className="quiz__question container">
-        <span>correct: {correctCount}</span>
-        <span>incorrect: {incorrectCount}</span>
         <p>{text}</p>
         <div className="quiz__answers">
             {getAnswers()}
