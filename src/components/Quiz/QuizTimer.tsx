@@ -7,7 +7,7 @@ import { QuizResultStripe } from "./QuizResultStripe";
 export const QuizTimer: React.FC = () => {
     const dispatch = useDispatch();
     const { time, initialTime, isAnswerClicked, currentQuestion } = useSelector((state: RootState) => state.quiz);
-    const { quizTakeTime } = actionCreators;
+    const { quizTakeTime, quizEnd } = actionCreators;
     const [timerId, setTimerId] = useState<NodeJS.Timer>();
     //starting timer
     useEffect(() => {
@@ -25,9 +25,15 @@ export const QuizTimer: React.FC = () => {
             if (timerId !== undefined) clearInterval(timerId)
         }
     }, [isAnswerClicked, timerId])
-
+    //end quiz on time end
+    useEffect(() => {
+        if (time <= 0) {
+            dispatch(quizEnd());
+            if (timerId !== undefined) clearInterval(timerId);
+        }
+    }, [time, dispatch, quizEnd, timerId])
     return <>
-        <p>Pozostały czas: {time}s</p>
+        <p>{time === 0 ? "KONIEC CZASU" : `Pozostały czas: ${time}s`}</p>
         <QuizResultStripe width={Math.round(time / initialTime * 100)} transitionDuration={1} />
     </>
 }

@@ -26,7 +26,7 @@ export const AdminPropositions: React.FC = () => {
 
     const getPropositionsDisplayed = (): JSX.Element[] => {
         const propsToDisplay = displayedCategory === "" ? propositions : propositions.filter((el: QuestionProposition) => el.displayedCategory === displayedCategory);
-        return propsToDisplay.map(proposition => <div className="container admin__proposition" key={proposition.category}>
+        return propsToDisplay.map((proposition, i) => <div className="container admin__proposition" key={`${proposition.category}${i}`}>
             <div className="admin__proposition-data">
                 <p>{proposition.displayedCategory}</p>
                 <p className="admin__proposition-text">{proposition.text}</p>
