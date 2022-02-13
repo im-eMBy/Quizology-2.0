@@ -19,7 +19,9 @@ export const Play: React.FC = () => {
     const getCategories = (): JSX.Element[] => {
         return categories.map(category => <div className="container play__category">
             <h3 className="play__category-name">{category.displayName}</h3>
-            <button onClick={() => handleQuizStart(category, 3, 60)}>Graj</button>
+            <button onClick={() => handleQuizStart(category, 5, 30)}>Szybka - 5 pytań | 30s</button>
+            <button onClick={() => handleQuizStart(category, 10, 90)}>Normalna - 10 pytań | 90s</button>
+            <button onClick={() => handleQuizStart(category, 10, 30)}>Blitz - 10 pytań | 30s</button>
         </div>)
     }
 

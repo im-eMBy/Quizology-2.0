@@ -1,11 +1,11 @@
 import { useSelector } from "react-redux";
 import { RootState } from "../state/reducers";
 
-import { AdminLogin } from "../components/AdminLogin";
-import { AdminNavigation } from "../components/AdminNavigation";
-import { AdminCategories } from "../components/AdminCategories";
-import { AdminAddCategory } from "../components/AdminAddCategory";
-import { AdminPropositions } from "../components/AdminPropositions";
+import { AdminLogin } from "../components/Admin/AdminLogin";
+import { AdminNavigation } from "../components/Admin/AdminNavigation";
+import { AdminCategories } from "../components/Admin/AdminCategories";
+import { AdminAddCategory } from "../components/Admin/AdminAddCategory";
+import { AdminPropositions } from "../components/Admin/AdminPropositions";
 
 import "../scss/_admin.scss";
 

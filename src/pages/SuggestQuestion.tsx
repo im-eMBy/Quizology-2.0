@@ -1,6 +1,6 @@
-import { SuggestForm } from "../components/SuggestForm";
-import { SuggestPreview } from "../components/SuggestPreview";
-import { SuggestValidate } from "../components/SuggestValidate";
+import { SuggestForm } from "../components/Suggest/SuggestForm";
+import { SuggestPreview } from "../components/Suggest/SuggestPreview";
+import { SuggestValidate } from "../components/Suggest/SuggestValidate";
 
 import "../scss/_suggest.scss";
 

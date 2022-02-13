@@ -1,8 +1,8 @@
 import { useState } from "react"
 
-import { addCategory } from "../firebase/categories";
+import { addCategory } from "../../firebase/categories";
 
-import { SwitchButton } from "./shared/SwitchButton";
+import { SwitchButton } from "../shared/SwitchButton";
 
 export const AdminAddCategory: React.FC = () => {
     const [newCategoryName, setNewCategoryName] = useState("");

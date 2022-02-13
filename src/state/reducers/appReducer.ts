@@ -8,7 +8,7 @@ interface AppState {
 }
 
 const initialState: AppState = {
-    page: "Suggest",
+    page: "Play",
     categories: [],
     isQuizActive: false
 }

@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { useDispatch } from "react-redux"
 import { bindActionCreators } from "redux";
-import { actionCreators } from '../state/action-creators';
+import { actionCreators } from '../../state/action-creators';
 
 export const AdminLogin: React.FC = () => {
     const dispatch = useDispatch();

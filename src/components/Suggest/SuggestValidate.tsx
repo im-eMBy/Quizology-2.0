@@ -1,9 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
 import { bindActionCreators } from "redux";
-import { actionCreators } from "../state/action-creators";
-import { RootState } from "../state/reducers";
+import { actionCreators } from "../../state/action-creators";
+import { RootState } from "../../state/reducers";
 
-import { addProposition } from "../firebase/propositions";
+import { addProposition } from "../../firebase/propositions";
 
 export const SuggestValidate: React.FC = () => {
     const dispatch = useDispatch();

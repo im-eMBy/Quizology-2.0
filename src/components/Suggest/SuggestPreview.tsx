@@ -1,10 +1,10 @@
 import { useSelector } from "react-redux";
-import { actionCreators } from '../state/action-creators';
+import { actionCreators } from '../../state/action-creators';
 import { bindActionCreators } from 'redux';
 import { useDispatch } from 'react-redux';
-import { RootState } from "../state/reducers";
+import { RootState } from "../../state/reducers";
 
-import deleteIcon from "../assets/icons/delete-icon.png";
+import deleteIcon from "../../assets/icons/delete-icon.png";
 
 export const SuggestPreview: React.FC = () => {
     const dispatch = useDispatch();

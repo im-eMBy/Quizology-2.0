@@ -8,7 +8,7 @@ import { QuizTimer } from "./QuizTimer";
 
 export const QuizStatus: React.FC = () => {
     const dispatch = useDispatch();
-    const { questions, nrOfQuestions, currentQuestion, correctCount, incorrectCount, isQuizEnd } = useSelector((state: RootState) => state.quiz);
+    const { questions, time, nrOfQuestions, currentQuestion, correctCount, incorrectCount, isQuizEnd } = useSelector((state: RootState) => state.quiz);
     const { appSetQuizActive, quizReset } = bindActionCreators(actionCreators, dispatch);
 
     const percentageOfCorrect: number = correctCount + incorrectCount === 0 ? 0 : Math.round(correctCount * 100 / (correctCount + incorrectCount));
@@ -23,7 +23,7 @@ export const QuizStatus: React.FC = () => {
         <p>Poprawne odpowiedzi: {correctCount}/{correctCount + incorrectCount} ({percentageOfCorrect}%)</p>
         <QuizResultStripe width={percentageOfCorrect} transitionDuration={0.5} />
         <QuizTimer />
-        <p>Pozostałe pytania: {questionsLeft}</p>
+        {time === 0 ? <p>Pozostałe pytania: {questionsLeft}</p> : null}
         {isQuizEnd ? <button onClick={() => handleQuizQuit()}>Powrót</button> : null}
     </div>
 }

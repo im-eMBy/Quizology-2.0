@@ -1,9 +1,9 @@
 import { useSelector, useDispatch } from "react-redux";
-import { actionCreators } from '../state/action-creators';
+import { actionCreators } from '../../state/action-creators';
 import { bindActionCreators } from 'redux';
 import { useRef, useState, useEffect } from "react";
-import { RootState } from "../state/reducers";
-import { Category } from "../shared/types";
+import { RootState } from "../../state/reducers";
+import { Category } from "../../shared/types";
 
 export const SuggestForm: React.FC = () => {
     const dispatch = useDispatch();

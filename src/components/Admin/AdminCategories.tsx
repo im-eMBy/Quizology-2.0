@@ -1,11 +1,9 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { actionCreators } from "../state/action-creators";
-import { RootState } from "../state/reducers";
+import { actionCreators } from "../../state/action-creators";
+import { RootState } from "../../state/reducers";
 
-import { getCategories, deleteCategory } from "../firebase/categories";
-
-import deleteIcon from "../assets/icons/delete-icon.png";
+import { getCategories, deleteCategory } from "../../firebase/categories";
 
 export const AdminCategories: React.FC = () => {
     const dispatch = useDispatch();

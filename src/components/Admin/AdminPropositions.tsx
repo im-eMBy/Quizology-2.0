@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from "react"
-import { QuestionProposition } from "../shared/types";
-import { getPropositionsAndListen, deleteProposition } from "../firebase/propositions";
-import { addQuestion } from "../firebase/questions";
+import { QuestionProposition } from "../../shared/types";
+import { getPropositionsAndListen, deleteProposition } from "../../firebase/propositions";
+import { addQuestion } from "../../firebase/questions";
 
 export const AdminPropositions: React.FC = () => {
     const [propositions, setPropositions] = useState<QuestionProposition[]>([]);
