@@ -118,6 +118,28 @@ export const quizSetCurrentQuestion = (currentQuestion: Question) => {
         })
     }
 }
+export const quizSetIsAnswerClicked = (isClicked: boolean) => {
+    return (dispatch: Dispatch<QuizAction>) => {
+        dispatch({
+            type: ActionTypes.QUIZ_SET_IS_ANSWER_CLICKED,
+            isClicked: isClicked
+        })
+    }
+}
+export const quizAddCorrect = () => {
+    return (dispatch: Dispatch<QuizAction>) => {
+        dispatch({
+            type: ActionTypes.QUIZ_ADD_CORRECT
+        })
+    }
+}
+export const quizAddIncorrect = () => {
+    return (dispatch: Dispatch<QuizAction>) => {
+        dispatch({
+            type: ActionTypes.QUIZ_ADD_INCORRECT
+        })
+    }
+}
 //admin
 export const adminSetSubPage = (subpage: "Propositions" | "Categories" | "AddCategory") => {
     return (dispatch: Dispatch<AdminAction>) => {

@@ -5,7 +5,7 @@ import { RootState } from "../state/reducers";
 import { getQuestions } from "../firebase/questions";
 import { shuffleArray } from "../utilis/shuffle";
 
-import { QuizQuestion } from "../components/QuizQuestion";
+import { QuizQuestion } from "../components/Quiz/QuizQuestion";
 
 import "../scss/_quiz.scss";
 import { bindActionCreators } from "redux";

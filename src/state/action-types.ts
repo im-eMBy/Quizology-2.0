@@ -17,6 +17,7 @@ export enum ActionTypes {
     QUIZ_INIT = "quizInit",
     QUIZ_SET_QUESTIONS = "quizSetQuestions",
     QUIZ_SET_CURRENT_QUESTION = "quizSetCurrentQuestion",
+    QUIZ_SET_IS_ANSWER_CLICKED = "quizSetIsAnswerClicked",
     QUIZ_ADD_CORRECT = "quizCorrect",
     QUIZ_ADD_INCORRECT = "quizIncorrect",
     QUIZ_ADD_ANSWER = "quizAddAnswer",
@@ -86,6 +87,10 @@ export type ActionQuizSetCurrentQuestion = {
     type: ActionTypes.QUIZ_SET_CURRENT_QUESTION,
     currentQuestion: Question
 }
+export type ActionQuizSetIsAnswerClicked = {
+    type: ActionTypes.QUIZ_SET_IS_ANSWER_CLICKED,
+    isClicked: boolean
+}
 export type ActionQuizAddCorrect = {
     type: ActionTypes.QUIZ_ADD_CORRECT
 }
@@ -114,6 +119,6 @@ export type SuggestAction = ActionSuggestSetCategory | ActionSuggestSetDisplayed
 
 export type AdminAction = ActionAdminSetSubPage | ActionAdminSetPassword
 
-export type QuizAction = ActionQuizInit | ActionQuizSetQuestions | ActionQuizSetCurrentQuestion | ActionQuizAddCorrect | ActionQuizAddIncorrect | ActionQuizAddAnswer | ActionQuizEnd
+export type QuizAction = ActionQuizInit | ActionQuizSetQuestions | ActionQuizSetCurrentQuestion | ActionQuizSetIsAnswerClicked | ActionQuizAddCorrect | ActionQuizAddIncorrect | ActionQuizAddAnswer | ActionQuizEnd
 
 export type Action = AppAction | SuggestAction | QuizAction | AdminAction

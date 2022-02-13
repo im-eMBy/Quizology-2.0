@@ -1,0 +1,28 @@
+@import "./colors";
+.quiz__container {
+    width: 80%;
+    margin: 30px 10% 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px
+}
+.quiz__question {
+    width: calc(50% - 10px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+.quiz__answers {
+    min-width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    button {
+        min-width: 50%;
+        &:hover {
+            background-color: lighten($color-blue, 20%);
+        }
+    }
+}
