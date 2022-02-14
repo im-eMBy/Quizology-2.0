@@ -9,8 +9,11 @@
 .suggest__container-inner {
     display: flex;
     justify-content: center;
-    gap: 30px;
+    gap: 20px;
     margin-top: 30px;
+    @media (max-width: 800px) {
+        flex-direction: column;
+    }
 }
 .suggest__preview {
     flex-grow: 1;
@@ -64,7 +67,9 @@
     flex-direction: column;
     align-items: center;
     gap: 10px;
-    input, textarea, select {
+    input,
+    textarea,
+    select {
         width: 100%;
         border: 2px solid black;
         border-radius: 20px;
@@ -79,14 +84,13 @@
         max-width: 120px;
         &:hover {
             background-color: lighten($color-blue, 20%);
-          }
+        }
     }
 }
 .suggest__validate {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    // min-height: 125px;
     ul {
         font-size: 0.8rem;
         padding: 0;
@@ -110,8 +114,12 @@
                 transform: translateX(-120%);
             }
         }
+        @media (max-width: 800px) {
+            justify-content: flex-start;
+        }
     }
     .suggest__send-button {
+        min-width: 100px;
         background-color: $color-red;
         cursor: default;
         &--active {

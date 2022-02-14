@@ -2,7 +2,7 @@
 
 ## LIVE: [LIVE](https://quizology.netlify.app/)
 Note:
-- The site is currently not responsive, I will fix that soon
+- The site is not fully responsive yet, I will fix that soon
 - UI is in Polish Language
 
 ## About
