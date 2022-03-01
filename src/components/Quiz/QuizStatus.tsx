@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { bindActionCreators } from "redux";
 import { actionCreators } from "../../state/action-creators";
@@ -11,6 +12,10 @@ export const QuizStatus: React.FC = () => {
     const { questions, time, nrOfQuestions, currentQuestion, correctCount, incorrectCount, isQuizEnd } = useSelector((state: RootState) => state.quiz);
     const { appSetQuizActive, quizReset } = bindActionCreators(actionCreators, dispatch);
 
+    const timer = useMemo(() => {
+        return <QuizTimer />
+    }, [])
+
     const percentageOfCorrect: number = correctCount + incorrectCount === 0 ? 0 : Math.round(correctCount * 100 / (correctCount + incorrectCount));
     const questionsLeft = currentQuestion !== null ? nrOfQuestions - questions.indexOf(currentQuestion) - 1 : 0;
 
@@ -22,7 +27,7 @@ export const QuizStatus: React.FC = () => {
     return <div className={isQuizEnd ? "container quiz__status quiz__status--end" : "container quiz__status"}>
         <p>Poprawne odpowiedzi: {correctCount}/{correctCount + incorrectCount} ({percentageOfCorrect}%)</p>
         <QuizResultStripe width={percentageOfCorrect} transitionDuration={0.5} />
-        <QuizTimer />
+        {timer}
         {time === 0 || isQuizEnd !== true ? <p>Pozostałe pytania: {questionsLeft}</p> : null}
         {isQuizEnd ? <button onClick={handleQuizQuit}>Powrót</button> : null}
     </div>

@@ -33,7 +33,8 @@ export const SuggestPreview: React.FC = () => {
     }
 
     return <div className='suggest__preview container'>
-        <h2>Kategoria: {displayedCategory}</h2>
+        <h1>Podgląd</h1>
+        <p>Kategoria: {displayedCategory}</p>
         <p className='preview__text'>{text}</p>
         <h2>Prawidłowe odpowiedzi</h2>
         <div className="preview__answers-container">
