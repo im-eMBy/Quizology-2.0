@@ -24,6 +24,6 @@ export const QuizStatus: React.FC = () => {
         <QuizResultStripe width={percentageOfCorrect} transitionDuration={0.5} />
         <QuizTimer />
         {time === 0 || isQuizEnd !== true ? <p>Pozostałe pytania: {questionsLeft}</p> : null}
-        {isQuizEnd ? <button onClick={() => handleQuizQuit()}>Powrót</button> : null}
+        {isQuizEnd ? <button onClick={handleQuizQuit}>Powrót</button> : null}
     </div>
 }

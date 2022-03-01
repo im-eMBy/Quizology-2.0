@@ -22,6 +22,7 @@ export const QuizQuestion: React.FC = () => {
             setAnswers(shuffleArray(answersArr));
         }
     }, [currentQuestion])
+    
     if (currentQuestion === null) return null;
     const { text, correct, incorrect } = currentQuestion;
 
@@ -47,7 +48,7 @@ export const QuizQuestion: React.FC = () => {
     }
 
     const getAnswers = (): JSX.Element[] => {
-        return answers.map((answer: string, i) => <button key={`${answer}${i}`} value={answer} onClick={isAnswerClicked ? undefined : (ev) => handleAnswerClick(ev)}>{answer}</button>)
+        return answers.map((answer: string, i) => <button key={`${answer}${i}`} value={answer} onClick={isAnswerClicked ? undefined : handleAnswerClick}>{answer}</button>)
     }
 
     return <div className="quiz__question container">

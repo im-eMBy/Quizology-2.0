@@ -32,6 +32,7 @@ export const QuizTimer: React.FC = () => {
             if (timerId !== undefined) clearInterval(timerId);
         }
     }, [time, dispatch, quizEnd, timerId])
+    
     return <>
         <p>{time === 0 ? "KONIEC CZASU" : `Pozostały czas: ${time}s`}</p>
         <QuizResultStripe width={Math.round(time / initialTime * 100)} transitionDuration={1} />

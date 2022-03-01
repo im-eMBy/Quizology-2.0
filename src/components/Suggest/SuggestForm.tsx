@@ -19,7 +19,7 @@ export const SuggestForm: React.FC = () => {
     const [newIncorrect, setNewIncorrect] = useState<string>("");
 
     useEffect(() => {
-        if (categories.length === 0) return
+        if (categories.length === 0) return;
         if (displayedCategory === null || category === null) {
             suggestSetDisplayedCategory(categories[0].displayName);
             suggestSetCategory(categories[0].name);

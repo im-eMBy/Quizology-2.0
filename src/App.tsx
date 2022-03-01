@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators } from "./state/action-creators";
 import { RootState } from "./state/reducers";
@@ -44,14 +44,21 @@ const App: React.FC = () => {
     }
   }
 
+  const getNav = useMemo((): JSX.Element => {
+    return <Navigation />
+  }, [])
+  const getFooter = useMemo((): JSX.Element => {
+    return <Footer />
+  }, [])
+
   if (isQuizActive) return <Quiz />
 
   return <>
-    <Navigation />
+    {getNav}
     <main className="main">
       {getContent()}
     </main>
-    <Footer />
+    {getFooter}
   </>
 }
 
