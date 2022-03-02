@@ -1,10 +1,11 @@
-import { Category, QuestionProposition, Question } from "../shared/types";
+import { Category, Question } from "../shared/types";
 
 export enum ActionTypes {
     APP_SET_PAGE = "appSetPage",
     APP_SET_QUIZ_ACTIVE = "appSetQuizActive",
     APP_SET_CATEGORIES = "appSetCategories",
 
+    SUGGEST_SET_IS_VALID = "suggestSetIsValid",
     SUGGEST_SET_CATEGORY = "suggestSetCategory",
     SUGGEST_SET_DISPLAYED_CATEGORY = "suggestSetDisplayedCategory",
     SUGGEST_SET_TEXT = "suggestSetText",
@@ -43,6 +44,10 @@ export type ActionAppSetQuizActive = {
     isActive: boolean
 }
 //suggest
+export type ActionSuggestSetIsValid = {
+    type: ActionTypes.SUGGEST_SET_IS_VALID,
+    isValid: boolean
+}
 export type ActionSuggestSetCategory = {
     type: ActionTypes.SUGGEST_SET_CATEGORY,
     category: string
@@ -123,7 +128,7 @@ export type ActionAdminSetPassword = {
 }
 export type AppAction = ActionAppSetPage | ActionAppSetCategories | ActionAppSetQuizActive
 
-export type SuggestAction = ActionSuggestSetCategory | ActionSuggestSetDisplayedCategory | ActionSuggestSetText | ActionSuggestAddCorrect | ActionSuggestRemoveCorrect | ActionSuggestAddIncorrect | ActionSuggestRemoveIncorrect | ActionSuggestResetForm
+export type SuggestAction = ActionSuggestSetIsValid | ActionSuggestSetCategory | ActionSuggestSetDisplayedCategory | ActionSuggestSetText | ActionSuggestAddCorrect | ActionSuggestRemoveCorrect | ActionSuggestAddIncorrect | ActionSuggestRemoveIncorrect | ActionSuggestResetForm
 
 export type AdminAction = ActionAdminSetSubPage | ActionAdminSetPassword
 

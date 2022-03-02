@@ -3,6 +3,9 @@
 html {
   font-family: DosisSemibold, sans-serif;
   font-size: 18px;
+  @media (max-width: 800px) {
+    font-size: 14px;
+  }
 }
 body {
   overflow-x: hidden;

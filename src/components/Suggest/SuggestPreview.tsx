@@ -9,7 +9,7 @@ import deleteIcon from "../../assets/icons/delete-icon.png";
 export const SuggestPreview: React.FC = () => {
     const dispatch = useDispatch();
     const { suggestRemoveCorrect, suggestRemoveIncorrect } = bindActionCreators(actionCreators, dispatch);
-    const { text, displayedCategory, correct, incorrect } = useSelector((state: RootState) => state.suggest);
+    const { text, displayedCategory, correct, incorrect } = useSelector((state: RootState) => state.suggest.proposition);
 
     const getCorrectAnswers = (): JSX.Element[] => {
         return correct.map((answer: string, i: number) => {
@@ -33,7 +33,8 @@ export const SuggestPreview: React.FC = () => {
     }
 
     return <div className='suggest__preview container'>
-        <h2>Kategoria: {displayedCategory}</h2>
+        <h1>Podgląd</h1>
+        <p>Kategoria: {displayedCategory}</p>
         <p className='preview__text'>{text}</p>
         <h2>Prawidłowe odpowiedzi</h2>
         <div className="preview__answers-container">

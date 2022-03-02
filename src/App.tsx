@@ -44,21 +44,21 @@ const App: React.FC = () => {
     }
   }
 
-  const getNav = useMemo((): JSX.Element => {
+  const navigation = useMemo((): JSX.Element => {
     return <Navigation />
   }, [])
-  const getFooter = useMemo((): JSX.Element => {
+  const footer = useMemo((): JSX.Element => {
     return <Footer />
   }, [])
 
   if (isQuizActive) return <Quiz />
 
   return <>
-    {getNav}
+    {navigation}
     <main className="main">
       {getContent()}
     </main>
-    {getFooter}
+    {footer}
   </>
 }
 

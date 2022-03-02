@@ -17,7 +17,7 @@
 }
 .suggest__preview {
     flex-grow: 1;
-    min-width: 50%;
+    // width: 50%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -63,10 +63,14 @@
     }
 }
 .suggest__form {
+    min-width: 30%;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 10px;
+    label {
+        font-size: 1.2rem;
+    }
     input,
     textarea,
     select {
@@ -80,23 +84,33 @@
             background-color: fade-out($color-blue, 0.8);
         }
     }
-    button {
+    .suggest__add-button {
         max-width: 120px;
         &:hover {
             background-color: lighten($color-blue, 20%);
         }
     }
+    .suggest__send-button {
+        min-width: 100px;
+        background-color: $color-red;
+        cursor: default;
+        &--active {
+            background-color: $color-green;
+            cursor: pointer;
+            &:hover {
+                background-color: lighten($color-green, 20%);
+            }
+        }
+    }
 }
 .suggest__validate {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     ul {
         font-size: 0.8rem;
         padding: 0;
         list-style: none;
-        max-width: 80%;
-        flex-grow: 1;
         display: flex;
         flex-wrap: wrap;
         justify-content: space-evenly;
@@ -114,20 +128,22 @@
                 transform: translateX(-120%);
             }
         }
+        span {
+            position: relative;
+            padding: 0.25em 1em;
+            &::before {
+                content: "";
+                background-image: url(../assets/icons/tick-icon.svg);
+                background-size: contain;
+                background-repeat: no-repeat;
+                height: 1em;
+                width: 1em;
+                position: absolute;
+                transform: translateX(-120%);
+            }
+        }
         @media (max-width: 800px) {
             justify-content: flex-start;
-        }
-    }
-    .suggest__send-button {
-        min-width: 100px;
-        background-color: $color-red;
-        cursor: default;
-        &--active {
-            background-color: $color-blue;
-            cursor: pointer;
-            &:hover {
-                background-color: lighten($color-blue, 20%);
-            }
         }
     }
 }
