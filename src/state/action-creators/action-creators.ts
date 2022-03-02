@@ -28,6 +28,14 @@ export const appSetQuizActive = (isActive: boolean) => {
     }
 }
 //suggest
+export const suggestSetIsValid = (isValid: boolean) => {
+    return (dispatch: Dispatch<SuggestAction>) => {
+        dispatch({
+            type: ActionTypes.SUGGEST_SET_IS_VALID,
+            isValid: isValid
+        })
+    }
+}
 export const suggestSetCategory = (category: string) => {
     return (dispatch: Dispatch<SuggestAction>) => {
         dispatch({
