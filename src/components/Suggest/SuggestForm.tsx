@@ -8,7 +8,8 @@ import { addProposition } from "../../firebase/propositions";
 
 export const SuggestForm: React.FC = () => {
     const dispatch = useDispatch();
-    const { suggestSetCategory, suggestSetDisplayedCategory, suggestSetText, suggestAddCorrect, suggestAddIncorrect, suggestResetForm } = bindActionCreators(actionCreators, dispatch);
+    const { suggestSetCategory, suggestSetDisplayedCategory } = actionCreators;
+    const { suggestSetText, suggestAddCorrect, suggestAddIncorrect, suggestResetForm } = bindActionCreators(actionCreators, dispatch);
     const { isValid, proposition } = useSelector((state: RootState) => state.suggest);
     const { text, displayedCategory, category, correct, incorrect } = proposition;
     const { categories } = useSelector((state: RootState) => state.app);
@@ -23,11 +24,11 @@ export const SuggestForm: React.FC = () => {
     useEffect(() => {
         if (categories.length === 0) return;
         if (displayedCategory === null || category === null) {
-            suggestSetDisplayedCategory(categories[0].displayName);
-            suggestSetCategory(categories[0].name);
+            dispatch(suggestSetDisplayedCategory(categories[0].displayName));
+            dispatch(suggestSetCategory(categories[0].name));
         }
         if (category !== null && categorySelectElement.current) categorySelectElement.current.value = category;
-    }, []) // eslint-disable-line react-hooks/exhaustive-deps
+    }, [categories, category, displayedCategory, dispatch, suggestSetCategory, suggestSetDisplayedCategory]) 
 
     const handleSubmit = (ev: FormEvent) => {
         ev.preventDefault();
@@ -42,8 +43,8 @@ export const SuggestForm: React.FC = () => {
     }
     const handleCategoryChange = () => {
         if (categorySelectElement && categorySelectElement.current) {
-            suggestSetCategory(categorySelectElement.current.value);
-            suggestSetDisplayedCategory(categorySelectElement.current.options[categorySelectElement.current.selectedIndex].text);
+            dispatch(suggestSetCategory(categorySelectElement.current.value));
+            dispatch(suggestSetDisplayedCategory(categorySelectElement.current.options[categorySelectElement.current.selectedIndex].text));
         }
     }
     const handleAddCorrect = () => {
