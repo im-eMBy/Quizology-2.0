@@ -47,7 +47,25 @@
 .navigation__hamburger {
     z-index: 1;
     path {
+        transition-duration: 0.3s;
         fill: $color-white;
+    }
+    &--open {
+        path {
+            transition-duration: 0.3s;
+        }
+        .hamburger--top {
+            transform-origin: 50% 10%;
+            transform: translateY(40%) rotate(45deg);
+        }
+        .hamburger--middle {
+            transform-origin: center;
+            transform: scale(0);
+        }
+        .hamburger--bottom {
+            transform-origin: 50% 90%;
+            transform: translateY(-40%) rotate(-45deg);
+        }
     }
 }
 .navigation__mobile-list {
