@@ -41,6 +41,6 @@ export const AdminAddCategory: React.FC = () => {
             <p>Grywalna:</p>
             <SwitchButton onChange={() => setNewCategoryIsPlayable(!newCategoryIsPlayable)} isActive={newCategoryIsPlayable} />
         </div>
-        <button className="admin__add-button" onClick={() => handleCategorySend()}>Dodaj</button>
+        <button className="admin__add-button" onClick={handleCategorySend}>Dodaj</button>
     </div>
 }

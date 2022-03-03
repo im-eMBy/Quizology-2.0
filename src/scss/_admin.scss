@@ -1,7 +1,7 @@
 @import "./colors";
+@import "./mixins";
 
 .admin__navigation {
-    background-color: $color-blue;
     display: flex;
     justify-content: flex-end;
     align-items: center;
@@ -13,7 +13,7 @@
         border-radius: 0;
         height: 100%;
         &:hover {
-            background-color: lighten($color-blue, 20%);
+            color: $color-yellow-secondary;
         }
     }
 }
@@ -36,8 +36,8 @@
     align-items: center;
     gap: 10px;
     width: 200px;
-    button:hover {
-        background-color: lighten($color-blue, 20%);
+    button {
+        @include gradient--blue-hover;
     }
 }
 //add category
@@ -47,14 +47,16 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-
     gap: 10px;
     div {
         display: flex;
         gap: 10px;
     }
-    .admin__add-button:hover {
-        background-color: lighten($color-blue, 20%);
+    input {
+        width: auto;
+    }
+    .admin__add-button {
+        @include gradient--blue-hover;
     }
 }
 //propositions
@@ -100,25 +102,17 @@
     &-correct,
     &-incorrect {
         padding: 0.5em 1em;
-        background-color: $color-green;
+        @include gradient--green;
         border-radius: 20px;
     }
     &-incorrect {
-        background-color: $color-red;
+        @include gradient--red;
     }
     &-add-button {
-        background-color: $color-green;
-        transition-duration: 0.3s;
-        &:hover {
-            background-color: lighten($color-green, 20%);
-        }
+        @include gradient--green-hover;
     }
     &-reject-button {
-        background-color: $color-red;
-        transition-duration: 0.3s;
-        &:hover {
-            background-color: lighten($color-red, 20%);
-        }
+        @include gradient--red-hover;
     }
 }
 //login
@@ -126,7 +120,7 @@
     width: 100%;
     display: flex;
     justify-content: center;
-    div {
+    .container {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -135,16 +129,12 @@
         min-width: 50%;
     }
     input {
-        min-width: 50%;
-        border: 2px solid black;
-        border-radius: 20px;
-        outline: none;
-        padding: 5px;
-        &:focus {
-            background-color: fade-out($color-blue, 0.8);
+        width: 50%;
+        @media (max-width: 800px) {
+            width: 100%;
         }
     }
-    button:hover {
-        background-color: lighten($color-blue, 20%);
+    button {
+        @include gradient--blue-hover;
     }
 }

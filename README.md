@@ -1,9 +1,7 @@
 # Quizology
 
 ## LIVE: [LIVE](https://quizology.netlify.app/)
-Note:
-- The site is not fully responsive yet, I will fix that soon
-- UI is in Polish Language
+Note: UI is in Polish
 
 ## About
 Quizology is a quiz app, initialy created as my final project during CoderLab's Javascript Developer Bootcamp. This is the improved version in terms of used technologies and scaling possibilities (that's why I called it 2.0).
@@ -24,7 +22,6 @@ Quizology is a quiz app, initialy created as my final project during CoderLab's 
 - Firebase
 
 ## To do:
-- responsivness
 - welcome page
 - admin authentication through firebase
 ### In the future:
