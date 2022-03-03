@@ -1,0 +1,29 @@
+@import "./colors";
+
+@mixin gradient--green {
+    background: linear-gradient(135deg, $color-green-primary 60%, $color-green-secondary 100%);
+}
+@mixin gradient--green-hover {
+    background: linear-gradient(135deg, $color-green-primary 60%, $color-green-secondary 100%);
+    &:hover {
+        background: $color-green-secondary;
+    }
+}
+@mixin gradient--red {
+    background: linear-gradient(135deg, $color-red-primary 60%, $color-red-secondary 100%);
+}
+@mixin gradient--red-hover {
+    background: linear-gradient(135deg, $color-red-primary 60%, $color-red-secondary 100%);
+    &:hover {
+        background: $color-red-secondary;
+    }
+}
+@mixin gradient--blue {
+    background: linear-gradient(135deg, $color-blue-primary 60%, $color-blue-secondary 100%);
+}
+@mixin gradient--blue-hover {
+    background: linear-gradient(135deg, $color-blue-primary 60%, $color-blue-secondary 100%);
+    &:hover {
+        background: $color-blue-secondary;
+    }
+}

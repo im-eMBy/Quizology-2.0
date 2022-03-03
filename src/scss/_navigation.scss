@@ -2,7 +2,6 @@
 
 .navigation {
     position: relative;
-    background-color: $color-blue;
     height: 70px;
     width: 100%;
     display: flex;
@@ -19,10 +18,10 @@
         color: $color-white;
     }
     span {
-        color: $color-red;
+        color: $color-red-secondary;
 
         &:nth-child(2n) {
-            color: $color-green;
+            color: $color-green-secondary;
         }
     }
 }
@@ -41,11 +40,8 @@
         border-radius: 0;
         height: 100%;
         &:hover {
-            background-color: lighten($color-blue, 20%);
+            color: $color-yellow-secondary;
         }
-    }
-    &--active {
-        background-color: $color-yellow;
     }
 }
 .navigation__hamburger {
@@ -56,7 +52,7 @@
 }
 .navigation__mobile-list {
     padding: 0;
-    background-color: $color-blue;
+    background-color: $color-black;
     list-style: none;
     width: 100%;
     position: absolute;
@@ -65,7 +61,7 @@
     transition-duration: 0.3s;
     li {
         button {
-            min-width: 50%;
+            width: 100%;
             text-align: left;
         }
     }

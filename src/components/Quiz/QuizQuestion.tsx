@@ -29,7 +29,7 @@ export const QuizQuestion: React.FC = () => {
     const handleAnswerClick = async (ev: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         quizSetIsAnswerClicked(true);
         const answerClicked = ev.target as HTMLButtonElement;
-        answerClicked.style.backgroundColor = "#D7AF70";
+        answerClicked.style.background = "linear-gradient(150deg, rgba(173,110,22,1) 70%, rgba(235,145,21,1) 100%)";
         await wait(800);
         if (correct.includes(answerClicked.value)) {
             quizAddCorrect();
