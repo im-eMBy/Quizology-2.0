@@ -3,7 +3,7 @@
 html {
   font-family: DosisSemibold, sans-serif;
   font-size: 18px;
-  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   -webkit-tap-highlight-color: transparent;
   @media (max-width: 800px) {
     font-size: 14px;
@@ -11,14 +11,14 @@ html {
 }
 body {
   overflow-x: hidden;
-  color: $color-white;
-  background-color: $color-black;
+  color: $color-blue-primary;
 }
 #app {
   width: 100%;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  background: linear-gradient(180deg, #3b27b0 20%, #7c48c2 90%);
 }
 .main {
   width: 100%;
@@ -29,9 +29,10 @@ body {
   }
 }
 .container {
-  background: linear-gradient(135deg, $color-black 10%, $color-dark-container 60%);
+  background-color: $color-white;
   border-radius: 20px;
   padding: 20px;
+  box-shadow: 2px 2px 5px 0px #000000;
 }
 button {
   font-family: inherit;
@@ -49,16 +50,16 @@ label {
 input,
 textarea,
 select {
-  color: $color-white;
+  color: $color-blue-primary;
   width: 100%;
   border: 2px solid transparent;
   border-radius: 20px;
   outline: none;
   padding: 5px;
   resize: none;
-  background-color: lighten($color-dark-container, 10%);
+  background-color: darken($color-white, 5%);
+  border: 2px solid $color-blue-primary;
   &:focus {
-      background-color: lighten($color-dark-container, 20%);
-      border: 2px solid $color-white;
+    background-color: darken($color-white, 20%);
   }
 }

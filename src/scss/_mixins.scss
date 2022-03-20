@@ -27,3 +27,13 @@
         background: $color-blue-secondary;
     }
 }
+@mixin button-with-border {
+    background-color: $color-white;
+    color: $color-blue-primary;
+    border: 2px solid $color-blue-primary;
+    @media (hover: hover) {
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}

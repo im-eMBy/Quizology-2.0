@@ -18,13 +18,13 @@ export const AdminNavigation: React.FC = () => {
     return <nav className="admin__navigation">
         <ul>
             <li className="admin__navigation-element">
-                <button onClick={handleNavClick} value="Propositions" style={subpage === "Propositions" ? {color: "#3213cf"} : undefined}>Propozycje</button>
+                <button onClick={handleNavClick} value="Propositions" style={subpage === "Propositions" ? { color: "#eb9115" } : undefined}>Propozycje</button>
             </li>
             <li className="admin__navigation-element">
-                <button onClick={handleNavClick} value="Categories" style={subpage === "Categories" ? {color: "#3213cf"} : undefined}>Kategorie</button>
+                <button onClick={handleNavClick} value="Categories" style={subpage === "Categories" ? { color: "#eb9115" } : undefined}>Kategorie</button>
             </li>
             <li className="admin__navigation-element">
-                <button onClick={handleNavClick} value="AddCategory" style={subpage === "AddCategory" ? {color: "#3213cf"} : undefined}>Dodaj Kategorię</button>
+                <button onClick={handleNavClick} value="AddCategory" style={subpage === "AddCategory" ? { color: "#eb9115" } : undefined}>Dodaj Kategorię</button>
             </li>
         </ul>
     </nav>

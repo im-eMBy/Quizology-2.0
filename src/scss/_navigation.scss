@@ -40,7 +40,7 @@
         border-radius: 0;
         height: 100%;
         &:hover {
-            color: $color-yellow-secondary;
+            color: $color-yellow-primary;
         }
     }
 }
@@ -70,7 +70,7 @@
 }
 .navigation__mobile-list {
     padding: 0;
-    background-color: $color-black;
+    background-color: $color-white;
     list-style: none;
     width: 100%;
     position: absolute;

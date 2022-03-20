@@ -22,14 +22,17 @@ export const QuizQuestion: React.FC = () => {
             setAnswers(shuffleArray(answersArr));
         }
     }, [currentQuestion])
-    
+
     if (currentQuestion === null) return null;
+    console.log(currentQuestion);
     const { text, correct, incorrect } = currentQuestion;
 
     const handleAnswerClick = async (ev: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         quizSetIsAnswerClicked(true);
         const answerClicked = ev.target as HTMLButtonElement;
         answerClicked.style.background = "linear-gradient(150deg, rgba(173,110,22,1) 70%, rgba(235,145,21,1) 100%)";
+        answerClicked.style.color = "#FFFFFF";
+        answerClicked.style.borderColor = "#FFFFFF";
         await wait(800);
         if (correct.includes(answerClicked.value)) {
             quizAddCorrect();

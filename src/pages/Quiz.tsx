@@ -13,7 +13,12 @@ import "../scss/_quiz.scss";
 
 export const Quiz: React.FC = () => {
     const dispatch = useDispatch();
-    const { isQuizEnd, category, nrOfQuestions, time, questions, currentQuestion } = useSelector((state: RootState) => state.quiz);
+    const isQuizEnd = useSelector((state: RootState) => state.quiz.isQuizEnd);
+    const category = useSelector((state: RootState) => state.quiz.category);
+    const nrOfQuestions = useSelector((state: RootState) => state.quiz.nrOfQuestions);
+    const initialTime = useSelector((state: RootState) => state.quiz.initialTime);
+    const questions = useSelector((state: RootState) => state.quiz.questions);
+    const currentQuestion = useSelector((state: RootState) => state.quiz.currentQuestion);
     const { quizSetQuestions } = actionCreators;
     const { quizSetCurrentQuestion } = bindActionCreators(actionCreators, dispatch);
     useEffect(() => {
@@ -32,11 +37,12 @@ export const Quiz: React.FC = () => {
         quizSetCurrentQuestion(questions[0]);
     }
 
+    if (questions[0] === undefined) return null;
     if (currentQuestion === null) return <div className="quiz__container">
         <div className="quiz__start-container container">
             <h3>{category?.displayName}</h3>
             <p>Liczba pytań: {nrOfQuestions}</p>
-            <p>Czas: {time}s</p>
+            <p>Czas: {initialTime}s</p>
             <p>Gotowy?</p>
             <button className="quiz__start-button" onClick={() => handleStartButtonClick()}>Start</button>
         </div>

@@ -34,10 +34,10 @@ export const Navigation: React.FC = () => {
     const getNavigationList = (): JSX.Element => {
         return <ul className="navigation__list">
             <li className="navigation__element">
-                <button onClick={handleNavClick} value="Play" style={page === "Play" ? {color: "#3213cf"} : undefined}>Graj</button>
+                <button onClick={handleNavClick} value="Play" style={page === "Play" ? { color: "#eb9115" } : undefined}>Graj</button>
             </li>
             <li className="navigation__element">
-                <button onClick={handleNavClick} value="Suggest" style={page === "Suggest" ? {color: "#3213cf"} : undefined}>Zaproponuj pytanie</button>
+                <button onClick={handleNavClick} value="Suggest" style={page === "Suggest" ? { color: "#eb9115" } : undefined}>Zaproponuj pytanie</button>
             </li>
         </ul>
     }

@@ -17,7 +17,7 @@ export const Play: React.FC = () => {
     }
 
     const getCategories = (): JSX.Element[] => {
-        return categories.map(category => <div key={category.name} className="container play__category">
+        return categories.map(category => <div key={category.name} className="play__category">
             <h2 className="play__category-name">{category.displayName}</h2>
             <button onClick={() => handleQuizStart(category, 5, 30)}>Szybka - 5 pytań | 30s</button>
             <button onClick={() => handleQuizStart(category, 10, 90)}>Normalna - 10 pytań | 90s</button>
@@ -25,7 +25,7 @@ export const Play: React.FC = () => {
         </div>)
     }
 
-    return <div className="play__container">
+    return <div className="play__container container">
         <h1>Wybierz kategorię:</h1>
         <div className="play__categories-container">
             {getCategories()}
