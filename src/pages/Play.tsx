@@ -3,13 +3,14 @@ import { actionCreators } from '../state/action-creators';
 import { bindActionCreators } from 'redux';
 import { RootState } from "../state/reducers/index";
 import { Category } from "../shared/types";
+import { Login } from "../components/shared/Login";
 
 import "../scss/_play.scss";
 
 export const Play: React.FC = () => {
     const dispatch = useDispatch();
     const { appSetQuizActive, quizInit } = bindActionCreators(actionCreators, dispatch);
-    const { categories } = useSelector((state: RootState) => state.app);
+    const { categories, user } = useSelector((state: RootState) => state.app);
 
     const handleQuizStart = (category: Category, nrOfQuestions: number, time: number) => {
         quizInit(category, nrOfQuestions, time);
@@ -25,10 +26,14 @@ export const Play: React.FC = () => {
         </div>)
     }
 
-    return <div className="play__container container">
-        <h1>Wybierz kategorię:</h1>
-        <div className="play__categories-container">
-            {getCategories()}
+    return <>
+        <div className="play__container container">
+            <h1>Wybierz kategorię:</h1>
+            <div className="play__categories-container">
+                {getCategories()}
+            </div>
         </div>
-    </div>
+        {user === null ? <Login /> : <h1>Witaj, {user.email}</h1>}
+    </>
+
 }

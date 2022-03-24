@@ -1,13 +1,22 @@
 import { ActionTypes, AppAction, SuggestAction, AdminAction, QuizAction } from "../action-types";
 import { Dispatch } from "redux";
 import { Category, Question } from "../../shared/types";
+import { User } from "firebase/auth";
 
 //app
-export const appSetPage = (page: "Play" | "Suggest" | "Admin") => {
+export const appSetPage = (page: "Play" | "Suggest" | "Admin" | "Register") => {
     return (dispatch: Dispatch<AppAction>) => {
         dispatch({
             type: ActionTypes.APP_SET_PAGE,
             page: page
+        })
+    }
+}
+export const appSetUser = (user: User | null) => {
+    return (dispatch: Dispatch<AppAction>) => {
+        dispatch({
+            type: ActionTypes.APP_SET_USER,
+            user: user
         })
     }
 }

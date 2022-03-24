@@ -3,10 +3,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { actionCreators } from "./state/action-creators";
 import { RootState } from "./state/reducers";
 
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "./firebase/init";
 import { getCategories } from "./firebase/categories";
 
 import { Navigation } from "./components/Navigation";
 import { Footer } from "./components/Footer";
+import { Register } from "./pages/Register";
 import { Play } from "./pages/Play";
 import { SuggestQuestion } from "./pages/SuggestQuestion";
 import { AdminPanel } from "./pages/AdminPanel";
@@ -16,9 +19,21 @@ import "./scss/index.scss";
 
 const App: React.FC = () => {
   const dispatch = useDispatch();
-  const { page, isQuizActive } = useSelector((state: RootState) => state.app);
-  const { appSetCategories } = actionCreators;
+  const { page, isQuizActive, user } = useSelector((state: RootState) => state.app);
+  const { appSetCategories, appSetUser } = actionCreators;
   const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        dispatch(appSetUser(user));
+        console.log(user);
+      } else {
+        dispatch(appSetUser(null));
+      }
+      return unsubscribe;
+    });
+  }, []);
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -28,7 +43,7 @@ const App: React.FC = () => {
     }
     fetchCategories()
       .catch(console.error);
-  }, [appSetCategories, dispatch])
+  }, [appSetCategories, dispatch]);
 
   const getContent = (): JSX.Element => {
     if (!isLoaded) return <h1>Loading</h1>
@@ -39,6 +54,8 @@ const App: React.FC = () => {
         return <SuggestQuestion />
       case "Admin":
         return <AdminPanel />
+      case "Register":
+        return <Register />
       default:
         return <Play />
     }

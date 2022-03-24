@@ -1,9 +1,11 @@
+import { User } from "firebase/auth";
 import { Category, Question } from "../shared/types";
 
 export enum ActionTypes {
     APP_SET_PAGE = "appSetPage",
     APP_SET_QUIZ_ACTIVE = "appSetQuizActive",
     APP_SET_CATEGORIES = "appSetCategories",
+    APP_SET_USER = "appSetUser",
 
     SUGGEST_SET_IS_VALID = "suggestSetIsValid",
     SUGGEST_SET_CATEGORY = "suggestSetCategory",
@@ -33,7 +35,11 @@ export enum ActionTypes {
 //app
 export type ActionAppSetPage = {
     type: ActionTypes.APP_SET_PAGE,
-    page: "Play" | "Suggest" | "Admin"
+    page: "Play" | "Suggest" | "Admin" | "Register"
+}
+export type ActionAppSetUser = {
+    type: ActionTypes.APP_SET_USER,
+    user: User | null
 }
 export type ActionAppSetCategories = {
     type: ActionTypes.APP_SET_CATEGORIES,
@@ -126,7 +132,7 @@ export type ActionAdminSetPassword = {
     type: ActionTypes.ADMIN_SET_PASSWORD,
     password: string
 }
-export type AppAction = ActionAppSetPage | ActionAppSetCategories | ActionAppSetQuizActive
+export type AppAction = ActionAppSetPage | ActionAppSetCategories | ActionAppSetQuizActive | ActionAppSetUser
 
 export type SuggestAction = ActionSuggestSetIsValid | ActionSuggestSetCategory | ActionSuggestSetDisplayedCategory | ActionSuggestSetText | ActionSuggestAddCorrect | ActionSuggestRemoveCorrect | ActionSuggestAddIncorrect | ActionSuggestRemoveIncorrect | ActionSuggestResetForm
 
