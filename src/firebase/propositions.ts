@@ -1,5 +1,5 @@
-import { doc, updateDoc, arrayUnion, arrayRemove, getDoc, onSnapshot } from "firebase/firestore";
-import { db } from "../index";
+import { doc, updateDoc, arrayUnion, arrayRemove, onSnapshot } from "firebase/firestore";
+import { db } from "./init";
 import { QuestionProposition } from "../shared/types";
 
 export const addProposition = (propostion: QuestionProposition) => {
@@ -8,7 +8,7 @@ export const addProposition = (propostion: QuestionProposition) => {
     })
 }
 export const getPropositionsAndListen = (callback: Function) => {
-    const call = (data:any) => {
+    const call = (data: any) => {
         callback(data.propositions);
     }
     const unsubscribe = onSnapshot(doc(db, "propositions", "propositions"), (doc) => {

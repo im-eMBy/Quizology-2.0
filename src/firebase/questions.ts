@@ -1,5 +1,5 @@
-import { doc, updateDoc, arrayUnion, arrayRemove, getDoc, onSnapshot } from "firebase/firestore";
-import { db } from "../index";
+import { doc, updateDoc, arrayUnion, getDoc } from "firebase/firestore";
+import { db } from "./init";
 import { Question, QuestionProposition } from "../shared/types";
 
 export const addQuestion = (proposition: QuestionProposition) => {

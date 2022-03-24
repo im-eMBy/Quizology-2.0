@@ -1,5 +1,5 @@
-import { doc, updateDoc, arrayUnion, arrayRemove, getDoc, onSnapshot, setDoc } from "firebase/firestore";
-import { db } from "../index";
+import { doc, updateDoc, arrayUnion, arrayRemove, getDoc, setDoc } from "firebase/firestore";
+import { db } from "./init";
 import { Category } from "../shared/types";
 
 export const addCategory = (category: Category) => {
