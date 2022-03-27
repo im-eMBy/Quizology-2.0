@@ -3,7 +3,7 @@ import { Category } from "../../shared/types";
 import { ActionTypes, AppAction } from "../action-types";
 
 interface AppState {
-    page: "Play" | "Suggest" | "Admin" | "Register",
+    page: "Play" | "Suggest" | "Admin" | "Register" | "Profile",
     user: User | null,
     categories: Category[],
     isQuizActive: boolean

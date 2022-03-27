@@ -1,12 +1,12 @@
 import { FormEvent, useState } from "react";
 import { useDispatch } from "react-redux";
 import { actionCreators } from "../../state/action-creators";
-import { singIn } from "../../firebase/auth/sing-in";
+import { loginUser } from "../../firebase/auth/login";
 
 
-import "../../scss/components/_login.scss";
+import "../../scss/components/_login-panel.scss";
 
-export const Login: React.FC = () => {
+export const LoginPanel: React.FC = () => {
     const dispatch = useDispatch();
     const { appSetPage } = actionCreators;
     const [email, setEmail] = useState<string>("");
@@ -15,17 +15,18 @@ export const Login: React.FC = () => {
 
     const handleSubmit = (ev: FormEvent) => {
         ev.preventDefault();
-        singIn(email, password, setMsg);
+        loginUser(email, password, setMsg);
     }
 
-    return <div className="container login__container">
-        <form className="login__form" onSubmit={handleSubmit}>
+    return <div className="container login-panel__container">
+        <h2>Zaloguj się</h2>
+        <form className="login-panel__form" onSubmit={handleSubmit}>
             <label htmlFor="Email">Email:</label>
             <input id="Email" type="email" onChange={(ev) => setEmail(ev.target.value)} value={email} />
             <label htmlFor="Password">Hasło:</label>
             <input id="Password" type="password" onChange={(ev) => setPassword(ev.target.value)} value={password} />
             <button type="submit">Zaloguj</button>
-            {msg !== null ? <p className="login__msg">{msg}</p> : null}
+            {msg !== null ? <p className="login-panel__msg">{msg}</p> : null}
         </form>
         <p>Nie masz konta? <button onClick={() => dispatch(appSetPage("Register"))}>Zarejestruj się</button></p>
     </div>

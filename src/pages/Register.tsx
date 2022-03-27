@@ -1,5 +1,5 @@
 import { FormEvent, useState } from "react";
-import { singUp } from "../firebase/auth/sing-up";
+import { registerUser } from "../firebase/auth/register";
 
 import "../scss/pages/_register.scss";
 
@@ -10,9 +10,10 @@ export const Register: React.FC = () => {
     const [msg, setMsg] = useState<string | null>(null);
 
     const handleSubmit = (ev: FormEvent) => {
-        if (password !== passwordConfirmation) setMsg("Podane hasła nie są identyczne");
         ev.preventDefault();
-        singUp(email, password, setMsg);
+        if (password !== passwordConfirmation) { setMsg("Podane hasła nie są identyczne"); return }
+        if (password.length < 8) { setMsg("Hasło powinno mieć conajmniej 8 znaków"); return }
+        registerUser(email, password, setMsg);
     }
 
     return <div className="register__container container">

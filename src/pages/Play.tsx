@@ -3,7 +3,7 @@ import { actionCreators } from '../state/action-creators';
 import { bindActionCreators } from 'redux';
 import { RootState } from "../state/reducers/index";
 import { Category } from "../shared/types";
-import { Login } from "../components/shared/Login";
+import { LoginPanel } from "../components/shared/LoginPanel";
 
 import "../scss/_play.scss";
 
@@ -33,7 +33,7 @@ export const Play: React.FC = () => {
                 {getCategories()}
             </div>
         </div>
-        {user === null ? <Login /> : <h1>Witaj, {user.email}</h1>}
+        {user === null ? <LoginPanel /> : <h1>Witaj, {user.email}</h1>}
     </>
 
 }

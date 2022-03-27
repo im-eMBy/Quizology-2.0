@@ -26,7 +26,7 @@ export const Navigation: React.FC = () => {
 
     const handleNavClick = (ev: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         const elementClicked = ev.target as HTMLButtonElement;
-        if (elementClicked.value === "Play" || elementClicked.value === "Suggest") {
+        if (elementClicked.value === "Play" || elementClicked.value === "Suggest" || elementClicked.value === "Profile") {
             appSetPage(elementClicked.value);
         }
     }
@@ -38,6 +38,9 @@ export const Navigation: React.FC = () => {
             </li>
             <li className="navigation__element">
                 <button onClick={handleNavClick} value="Suggest" style={page === "Suggest" ? { color: "#eb9115" } : undefined}>Zaproponuj pytanie</button>
+            </li>
+            <li className="navigation__element">
+                <button onClick={handleNavClick} value="Profile" style={page === "Profile" ? { color: "#eb9115" } : undefined}>Profil</button>
             </li>
         </ul>
     }

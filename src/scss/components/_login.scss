@@ -1,7 +1,0 @@
-@import "../mixins";
-
-.login__container {
-    button {
-        @include button-with-border;
-    }
-}

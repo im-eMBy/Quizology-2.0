@@ -4,7 +4,7 @@ import { Category, Question } from "../../shared/types";
 import { User } from "firebase/auth";
 
 //app
-export const appSetPage = (page: "Play" | "Suggest" | "Admin" | "Register") => {
+export const appSetPage = (page: "Play" | "Suggest" | "Admin" | "Register" | "Profile") => {
     return (dispatch: Dispatch<AppAction>) => {
         dispatch({
             type: ActionTypes.APP_SET_PAGE,

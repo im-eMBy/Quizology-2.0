@@ -5,6 +5,7 @@ export type Category = {
     playable: boolean
 }
 export type Question = {
+    id?: string,
     text: string,
     correct: string[],
     incorrect: string[]
