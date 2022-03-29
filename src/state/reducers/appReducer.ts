@@ -1,10 +1,10 @@
-import { User } from "firebase/auth";
-import { Category } from "../../shared/types";
+import { Category, QuizInfo, UserObject } from "../../shared/types";
 import { ActionTypes, AppAction } from "../action-types";
 
 interface AppState {
-    page: "Play" | "Suggest" | "Admin" | "Register" | "Profile",
-    user: User | null,
+    page: string,
+    user: UserObject | null,
+    quizzesInfo: QuizInfo[],
     categories: Category[],
     isQuizActive: boolean
 }
@@ -12,6 +12,7 @@ interface AppState {
 const initialState: AppState = {
     page: "Play",
     user: null,
+    quizzesInfo: [],
     categories: [],
     isQuizActive: false
 }
@@ -26,6 +27,8 @@ export const appReducer = (state: AppState = initialState, action: AppAction) =>
             return { ...state, categories: action.categories }
         case ActionTypes.APP_SET_QUIZ_ACTIVE:
             return { ...state, isQuizActive: action.isActive }
+        case ActionTypes.APP_SET_QUIZZES_INFO:
+            return { ...state, quizzesInfo: action.quizzesInfo }
         default:
             return state
     }

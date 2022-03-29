@@ -1,7 +1,0 @@
-@import "../mixins";
-
-.register__container {
-    button {
-        @include button-with-border;
-    }
-}

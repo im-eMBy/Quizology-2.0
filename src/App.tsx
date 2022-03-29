@@ -2,63 +2,72 @@ import React, { useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators } from "./state/action-creators";
 import { RootState } from "./state/reducers";
+import { bindActionCreators } from "redux";
 
 import { onAuthStateChanged } from "firebase/auth";
 import { getUserObject } from "./firebase/auth/userObject";
 import { auth } from "./firebase/init";
+import { getQuizzesInfo } from "./firebase/quizzesInfo";
 import { getCategories } from "./firebase/categories";
 
 import { Navigation } from "./components/Navigation";
 import { Footer } from "./components/Footer";
-import { Register } from "./pages/Register";
+import { Login } from "./pages/Login";
 import { Profile } from "./pages/Profile";
 import { Play } from "./pages/Play";
 import { SuggestQuestion } from "./pages/SuggestQuestion";
 import { AdminPanel } from "./pages/AdminPanel";
 import { Quiz } from "./pages/Quiz";
+import { MyQuizzes } from "./pages/MyQuizzes";
 
 import "./scss/index.scss";
-import { bindActionCreators } from "redux";
 
 const App: React.FC = () => {
   const dispatch = useDispatch();
-  const { page, isQuizActive, user } = useSelector((state: RootState) => state.app);
-  const { appSetCategories, appSetUser } = actionCreators;
+  const { page, isQuizActive } = useSelector((state: RootState) => state.app);
+  const { appSetCategories, appSetUser, appSetPage, appSetQuizzesInfo } = actionCreators;
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
     const callback = bindActionCreators(appSetUser, dispatch);
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
       if (user && user.emailVerified === true) {
-        getUserObject(user, callback);
+        await getUserObject(user, callback);
+        dispatch(appSetPage("Play"));
       } else {
         dispatch(appSetUser(null));
+        dispatch(appSetPage("Login"));
       }
       return unsubscribe;
     });
-  }, [appSetUser, dispatch]);
+  }, [appSetUser, appSetPage, dispatch]);
 
   useEffect(() => {
-    const fetchCategories = async () => {
-      const categories = await getCategories();
-      dispatch(appSetCategories(categories));
-      setIsLoaded(true);
-    }
-    fetchCategories()
-      .catch(console.error);
-  }, [appSetCategories, dispatch]);
+    const callback = bindActionCreators(appSetQuizzesInfo, dispatch);
+    getQuizzesInfo(callback);
+  }, [appSetQuizzesInfo, dispatch]);
+
+  // useEffect(() => {
+  //   const fetchCategories = async () => {
+  //     const categories = await getCategories();
+  //     dispatch(appSetCategories(categories));
+  //     setIsLoaded(true);
+  //   }
+  //   fetchCategories()
+  //     .catch(console.error);
+  // }, [appSetCategories, dispatch]);
 
   const getContent = (): JSX.Element => {
-    if (!isLoaded) return <h1>Loading</h1>
+    // if (!isLoaded) return <h1>Loading</h1>
     switch (page) {
       case "Play":
         return <Play />
-      case "Suggest":
-        return <SuggestQuestion />
+      case "MyQuizzes":
+        return <MyQuizzes />
       case "Admin":
         return <AdminPanel />
-      case "Register":
-        return <Register />
+      case "Login":
+        return <Login />
       case "Profile":
         return <Profile />
       default:

@@ -1,0 +1,10 @@
+@import "./mixins";
+
+.my-quizzes__container {
+    button {
+        @include button-with-border;
+    }
+}
+.add-quiz__container {
+    margin: 30px 5% 0;
+}

@@ -1,10 +1,9 @@
-import { ActionTypes, AppAction, SuggestAction, AdminAction, QuizAction } from "../action-types";
+import { ActionTypes, AppAction, SuggestAction, AdminAction, QuizAction, ManageQuizAction } from "../action-types";
 import { Dispatch } from "redux";
-import { Category, Question } from "../../shared/types";
-import { User } from "firebase/auth";
+import { Category, Question, Quiz, QuizInfo, UserObject } from "../../shared/types";
 
 //app
-export const appSetPage = (page: "Play" | "Suggest" | "Admin" | "Register" | "Profile") => {
+export const appSetPage = (page: string) => {
     return (dispatch: Dispatch<AppAction>) => {
         dispatch({
             type: ActionTypes.APP_SET_PAGE,
@@ -12,11 +11,19 @@ export const appSetPage = (page: "Play" | "Suggest" | "Admin" | "Register" | "Pr
         })
     }
 }
-export const appSetUser = (user: User | null) => {
+export const appSetUser = (user: UserObject | null) => {
     return (dispatch: Dispatch<AppAction>) => {
         dispatch({
             type: ActionTypes.APP_SET_USER,
             user: user
+        })
+    }
+}
+export const appSetQuizzesInfo = (quizzesInfo: QuizInfo[]) => {
+    return (dispatch: Dispatch<AppAction>) => {
+        dispatch({
+            type: ActionTypes.APP_SET_QUIZZES_INFO,
+            quizzesInfo: quizzesInfo
         })
     }
 }
@@ -33,6 +40,23 @@ export const appSetQuizActive = (isActive: boolean) => {
         dispatch({
             type: ActionTypes.APP_SET_QUIZ_ACTIVE,
             isActive: isActive
+        })
+    }
+}
+//manage quiz
+export const manageQuizSetQuiz = (quiz: Quiz) => {
+    return (dispatch: Dispatch<ManageQuizAction>) => {
+        dispatch({
+            type: ActionTypes.MANAGE_QUIZ_SET_QUIZ,
+            quiz: quiz
+        })
+    }
+}
+export const manageQuizSetSubpage = (subpage: string) => {
+    return (dispatch: Dispatch<ManageQuizAction>) => {
+        dispatch({
+            type: ActionTypes.MANAGE_QUIZ_SET_SUBPAGE,
+            subpage: subpage
         })
     }
 }

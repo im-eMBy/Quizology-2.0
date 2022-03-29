@@ -1,11 +1,14 @@
-import { User } from "firebase/auth";
-import { Category, Question } from "../shared/types";
+import { Category, Question, Quiz, QuizInfo, UserObject } from "../shared/types";
 
 export enum ActionTypes {
     APP_SET_PAGE = "appSetPage",
     APP_SET_QUIZ_ACTIVE = "appSetQuizActive",
     APP_SET_CATEGORIES = "appSetCategories",
     APP_SET_USER = "appSetUser",
+    APP_SET_QUIZZES_INFO = "appSetQuizzesInfo",
+
+    MANAGE_QUIZ_SET_SUBPAGE = "manageQuizSetSubpage",
+    MANAGE_QUIZ_SET_QUIZ = "manageQuizSetQuiz",
 
     SUGGEST_SET_IS_VALID = "suggestSetIsValid",
     SUGGEST_SET_CATEGORY = "suggestSetCategory",
@@ -35,19 +38,32 @@ export enum ActionTypes {
 //app
 export type ActionAppSetPage = {
     type: ActionTypes.APP_SET_PAGE,
-    page: "Play" | "Suggest" | "Admin" | "Register" | "Profile"
+    page: string
 }
 export type ActionAppSetUser = {
     type: ActionTypes.APP_SET_USER,
-    user: User | null
+    user: UserObject | null
 }
 export type ActionAppSetCategories = {
     type: ActionTypes.APP_SET_CATEGORIES,
     categories: Category[]
 }
+export type ActionAppSetQuizzesInfo = {
+    type: ActionTypes.APP_SET_QUIZZES_INFO,
+    quizzesInfo: QuizInfo[]
+}
 export type ActionAppSetQuizActive = {
     type: ActionTypes.APP_SET_QUIZ_ACTIVE,
     isActive: boolean
+}
+//manage quiz
+export type ActionManageQuizSetQuiz = {
+    type: ActionTypes.MANAGE_QUIZ_SET_QUIZ,
+    quiz: Quiz
+}
+export type ActionManageQuizSetSubpage = {
+    type: ActionTypes.MANAGE_QUIZ_SET_SUBPAGE,
+    subpage: string
 }
 //suggest
 export type ActionSuggestSetIsValid = {
@@ -132,7 +148,10 @@ export type ActionAdminSetPassword = {
     type: ActionTypes.ADMIN_SET_PASSWORD,
     password: string
 }
-export type AppAction = ActionAppSetPage | ActionAppSetCategories | ActionAppSetQuizActive | ActionAppSetUser
+
+export type ManageQuizAction = ActionManageQuizSetQuiz | ActionManageQuizSetSubpage
+
+export type AppAction = ActionAppSetPage | ActionAppSetCategories | ActionAppSetQuizActive | ActionAppSetUser | ActionAppSetQuizzesInfo
 
 export type SuggestAction = ActionSuggestSetIsValid | ActionSuggestSetCategory | ActionSuggestSetDisplayedCategory | ActionSuggestSetText | ActionSuggestAddCorrect | ActionSuggestRemoveCorrect | ActionSuggestAddIncorrect | ActionSuggestRemoveIncorrect | ActionSuggestResetForm
 
@@ -140,4 +159,4 @@ export type AdminAction = ActionAdminSetSubPage | ActionAdminSetPassword
 
 export type QuizAction = ActionQuizInit | ActionQuizSetQuestions | ActionQuizSetCurrentQuestion | ActionQuizSetIsAnswerClicked | ActionQuizTakeTime | ActionQuizAddCorrect | ActionQuizAddIncorrect | ActionQuizAddAnswer | ActionQuizEnd | ActionQuizReset
 
-export type Action = AppAction | SuggestAction | QuizAction | AdminAction
+export type Action = AppAction | SuggestAction | QuizAction | AdminAction | ManageQuizAction

@@ -4,9 +4,10 @@ import { db } from "../init";
 
 const createUserObject = async (user: User) => {
     await setDoc(doc(db, "users", user.uid), {
+        uid: user.uid,
         email: user.email,
         name: "Gość",
-        quizes: [],
+        quizzes: [],
         results: []
     })
 }

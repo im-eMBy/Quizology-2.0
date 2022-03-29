@@ -3,10 +3,11 @@ import { useDispatch } from "react-redux";
 import { actionCreators } from "../../state/action-creators";
 import { loginUser } from "../../firebase/auth/login";
 
+type Props = {
+    switchToRegister: Function
+}
 
-import "../../scss/components/_login-panel.scss";
-
-export const LoginPanel: React.FC = () => {
+export const LoginPanel: React.FC<Props> = ({ switchToRegister }) => {
     const dispatch = useDispatch();
     const { appSetPage } = actionCreators;
     const [email, setEmail] = useState<string>("");
@@ -28,6 +29,6 @@ export const LoginPanel: React.FC = () => {
             <button type="submit">Zaloguj</button>
             {msg !== null ? <p className="login-panel__msg">{msg}</p> : null}
         </form>
-        <p>Nie masz konta? <button onClick={() => dispatch(appSetPage("Register"))}>Zarejestruj się</button></p>
+        <p>Nie masz konta? <button onClick={() => switchToRegister()}>Zarejestruj się</button></p>
     </div>
 }

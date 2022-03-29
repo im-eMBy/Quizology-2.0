@@ -1,12 +1,19 @@
 import { useState } from "react";
-import { Question } from "../../shared/types";
+import { useDispatch, useSelector } from "react-redux";
+import { bindActionCreators } from "redux";
+import { actionCreators } from "../../../state/action-creators";
+import { RootState } from "../../../state/reducers";
+import { Question } from "../../../shared/types";
+import { addQuestion } from "../../../firebase/quiz-managment/questionsManagment";
 
 type Props = {
-    quizId?: string,
+    quizId: string,
     questionData?: Question
 }
 
 export const AddQuestion: React.FC<Props> = ({ quizId, questionData }) => {
+    const dispatch = useDispatch();
+    const { manageQuizSetSubpage } = bindActionCreators(actionCreators, dispatch);
     const [text, setText] = useState<string>("");
     const [correctAnswers, setCorrectAnswers] = useState<string[]>([]);
     const [incorrectAnswers, setIncorrectAnswers] = useState<string[]>([]);
@@ -35,7 +42,13 @@ export const AddQuestion: React.FC<Props> = ({ quizId, questionData }) => {
     }
 
     const handleQuestionSave = () => {
-
+        const question: Question = {
+            text: text,
+            correct: correctAnswers,
+            incorrect: incorrectAnswers
+        }
+        addQuestion(quizId, question)
+        manageQuizSetSubpage("Questions");
     }
     const getCorrectAnswers = (): JSX.Element[] => {
         return correctAnswers.map((answer, index) => {
@@ -70,5 +83,6 @@ export const AddQuestion: React.FC<Props> = ({ quizId, questionData }) => {
             <button type="button" onClick={handleAddIncorrect}>Dodaj</button>
         </div>
         <button type="submit" onClick={handleQuestionSave}>Zapisz</button>
+        <button type="button" onClick={() => manageQuizSetSubpage("Questions")}>Anuluj</button>
     </form>
 }
