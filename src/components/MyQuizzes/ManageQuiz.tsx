@@ -15,8 +15,7 @@ type Props = {
 export const ManageQuiz: React.FC<Props> = ({ switchSubpage, quizId }) => {
     const dispatch = useDispatch();
     const { manageQuizSetQuiz } = actionCreators;
-    const subpage = useSelector((state: RootState) => state.manageQuiz.subpage);
-    const quiz = useSelector((state: RootState) => state.manageQuiz.quiz);
+    const { subpage, quiz, editedQuestion } = useSelector((state: RootState) => state.manageQuiz);
 
     useEffect(() => {
         const callback = bindActionCreators(manageQuizSetQuiz, dispatch);
@@ -31,7 +30,7 @@ export const ManageQuiz: React.FC<Props> = ({ switchSubpage, quizId }) => {
             case "Questions":
                 return <QuestionsList />
             case "EditQuestion":
-                return <AddQuestion quizId={quiz.id} />
+                return <AddQuestion quizId={quiz.id} questionData={editedQuestion} />
             case "AddQuestion":
                 return <AddQuestion quizId={quiz.id} />
         }

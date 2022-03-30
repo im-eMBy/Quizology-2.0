@@ -60,6 +60,14 @@ export const manageQuizSetSubpage = (subpage: string) => {
         })
     }
 }
+export const manageQuizSetEditedQuestion = (question: Question) => {
+    return (dispatch: Dispatch<ManageQuizAction>) => {
+        dispatch({
+            type: ActionTypes.MANAGE_QUIZ_SET_EDITED_QUESTION,
+            question: question
+        })
+    }
+}
 //suggest
 export const suggestSetIsValid = (isValid: boolean) => {
     return (dispatch: Dispatch<SuggestAction>) => {

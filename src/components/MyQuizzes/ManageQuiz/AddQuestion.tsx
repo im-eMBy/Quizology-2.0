@@ -1,10 +1,10 @@
-import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { bindActionCreators } from "redux";
 import { actionCreators } from "../../../state/action-creators";
-import { RootState } from "../../../state/reducers";
 import { Question } from "../../../shared/types";
-import { addQuestion } from "../../../firebase/quiz-managment/questionsManagment";
+import { addQuestion, editQuestion } from "../../../firebase/quiz-managment/questionsManagment";
+import { generateId } from "../../../utilis/generateId";
 
 type Props = {
     quizId: string,
@@ -18,18 +18,19 @@ export const AddQuestion: React.FC<Props> = ({ quizId, questionData }) => {
     const [correctAnswers, setCorrectAnswers] = useState<string[]>([]);
     const [incorrectAnswers, setIncorrectAnswers] = useState<string[]>([]);
 
-    const handleAddCorrect = () => {
-        setCorrectAnswers(prev => [...prev, ""]);
-    }
-    const handleAddIncorrect = () => {
-        setIncorrectAnswers(prev => [...prev, ""]);
-    }
-    const handleRemoveCorrect = (index: number) => {
-        setCorrectAnswers(prev => prev.filter((_answer, i) => (i !== index)));
-    }
-    const handleRemoveIncorrect = (index: number) => {
-        setIncorrectAnswers(prev => prev.filter((_answer, i) => (i !== index)));
-    }
+    useEffect(() => {
+        if (questionData) {
+            setText(questionData.text);
+            setCorrectAnswers(questionData.correct);
+            setIncorrectAnswers(questionData.incorrect);
+        }
+    }, [questionData])
+
+    const handleAddCorrect = () => setCorrectAnswers(prev => [...prev, ""]);
+    const handleAddIncorrect = () => setIncorrectAnswers(prev => [...prev, ""]);
+    const handleRemoveCorrect = (index: number) => setCorrectAnswers(prev => prev.filter((_answer, i) => (i !== index)));
+    const handleRemoveIncorrect = (index: number) => setIncorrectAnswers(prev => prev.filter((_answer, i) => (i !== index)));
+
     const handleCorrectChange = (value: string, index: number) => {
         const data = [...correctAnswers];
         data[index] = value;
@@ -43,11 +44,13 @@ export const AddQuestion: React.FC<Props> = ({ quizId, questionData }) => {
 
     const handleQuestionSave = () => {
         const question: Question = {
+            id: questionData ? questionData.id : generateId(),
             text: text,
             correct: correctAnswers,
             incorrect: incorrectAnswers
         }
-        addQuestion(quizId, question)
+        if (questionData) editQuestion(quizId, questionData, question);
+        if (!questionData) addQuestion(quizId, question);
         manageQuizSetSubpage("Questions");
     }
     const getCorrectAnswers = (): JSX.Element[] => {
@@ -67,22 +70,24 @@ export const AddQuestion: React.FC<Props> = ({ quizId, questionData }) => {
         })
     }
 
-    return <form className="add-question__form">
-        <div className="add-question__text">
-            <p>Treść pytania:</p>
-            <textarea cols={20} rows={8} value={text} onChange={(ev) => setText(ev.target.value)} />
-        </div>
-        <div className="add-question__correct-answers">
-            <p>Poprawne odpowiedzi:</p>
-            {getCorrectAnswers()}
-            <button type="button" onClick={handleAddCorrect}>Dodaj</button>
-        </div>
-        <div className="add-question__correct-answers">
-            <p>Niepoprawne odpowiedzi:</p>
-            {getIncorrectAnswers()}
-            <button type="button" onClick={handleAddIncorrect}>Dodaj</button>
-        </div>
-        <button type="submit" onClick={handleQuestionSave}>Zapisz</button>
-        <button type="button" onClick={() => manageQuizSetSubpage("Questions")}>Anuluj</button>
-    </form>
+    return <div className="add-question__container container">
+        <form className="add-question__form">
+            <div className="add-question__text">
+                <p>Treść pytania:</p>
+                <textarea cols={20} rows={8} value={text} onChange={(ev) => setText(ev.target.value)} />
+            </div>
+            <div className="add-question__correct-answers">
+                <p>Poprawne odpowiedzi:</p>
+                {getCorrectAnswers()}
+                <button type="button" onClick={handleAddCorrect}>Dodaj</button>
+            </div>
+            <div className="add-question__correct-answers">
+                <p>Niepoprawne odpowiedzi:</p>
+                {getIncorrectAnswers()}
+                <button type="button" onClick={handleAddIncorrect}>Dodaj</button>
+            </div>
+            <button type="submit" onClick={handleQuestionSave}>Zapisz</button>
+            <button type="button" onClick={() => manageQuizSetSubpage("Questions")}>Anuluj</button>
+        </form>
+    </div>
 }

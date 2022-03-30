@@ -9,7 +9,7 @@ export const QuestionsList = () => {
     const { manageQuizSetSubpage } = bindActionCreators(actionCreators, dispatch);
     const quiz = useSelector((state: RootState) => state.manageQuiz.quiz);
 
-    const getQuestions = () => quiz?.questions.map(question => <QuestionPreview question={question} />);
+    const getQuestions = () => quiz?.questions.map((question, i) => <QuestionPreview key={i} question={question} />);
 
     return <div className="manage-quiz__questions container">
         {getQuestions()}

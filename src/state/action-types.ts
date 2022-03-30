@@ -9,6 +9,7 @@ export enum ActionTypes {
 
     MANAGE_QUIZ_SET_SUBPAGE = "manageQuizSetSubpage",
     MANAGE_QUIZ_SET_QUIZ = "manageQuizSetQuiz",
+    MANAGE_QUIZ_SET_EDITED_QUESTION = "manageQuizSetEditedQuestion",
 
     SUGGEST_SET_IS_VALID = "suggestSetIsValid",
     SUGGEST_SET_CATEGORY = "suggestSetCategory",
@@ -64,6 +65,10 @@ export type ActionManageQuizSetQuiz = {
 export type ActionManageQuizSetSubpage = {
     type: ActionTypes.MANAGE_QUIZ_SET_SUBPAGE,
     subpage: string
+}
+export type ActionManageQuizSetEditedQuestion = {
+    type: ActionTypes.MANAGE_QUIZ_SET_EDITED_QUESTION,
+    question: Question
 }
 //suggest
 export type ActionSuggestSetIsValid = {
@@ -149,7 +154,7 @@ export type ActionAdminSetPassword = {
     password: string
 }
 
-export type ManageQuizAction = ActionManageQuizSetQuiz | ActionManageQuizSetSubpage
+export type ManageQuizAction = ActionManageQuizSetQuiz | ActionManageQuizSetSubpage | ActionManageQuizSetEditedQuestion
 
 export type AppAction = ActionAppSetPage | ActionAppSetCategories | ActionAppSetQuizActive | ActionAppSetUser | ActionAppSetQuizzesInfo
 
