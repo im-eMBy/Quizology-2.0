@@ -55,17 +55,17 @@ export const AddQuestion: React.FC<Props> = ({ quizId, questionData }) => {
     }
     const getCorrectAnswers = (): JSX.Element[] => {
         return correctAnswers.map((answer, index) => {
-            return <div>
+            return <div key={index} className="add-question__correct-answer">
                 <input type="text" onChange={(ev) => handleCorrectChange(ev.target.value, index)} value={answer} />
-                <button type="button" onClick={() => handleRemoveCorrect(index)}>Usuń</button>
+                <button type="button" onClick={() => handleRemoveCorrect(index)} className="add-question__remove-button">Usuń</button>
             </div>
         })
     }
     const getIncorrectAnswers = (): JSX.Element[] => {
         return incorrectAnswers.map((answer, index) => {
-            return <div>
+            return <div key={index} className="add-question__incorrect-answer">
                 <input type="text" onChange={(ev) => handleIncorrectChange(ev.target.value, index)} value={answer} />
-                <button type="button" onClick={() => handleRemoveIncorrect(index)}>Usuń</button>
+                <button type="button" onClick={() => handleRemoveIncorrect(index)} className="add-question__remove-button">Usuń</button>
             </div>
         })
     }
@@ -79,15 +79,17 @@ export const AddQuestion: React.FC<Props> = ({ quizId, questionData }) => {
             <div className="add-question__correct-answers">
                 <p>Poprawne odpowiedzi:</p>
                 {getCorrectAnswers()}
-                <button type="button" onClick={handleAddCorrect}>Dodaj</button>
+                <button type="button" onClick={handleAddCorrect} className="add-question__add-button">Dodaj</button>
             </div>
-            <div className="add-question__correct-answers">
+            <div className="add-question__incorrect-answers">
                 <p>Niepoprawne odpowiedzi:</p>
                 {getIncorrectAnswers()}
-                <button type="button" onClick={handleAddIncorrect}>Dodaj</button>
+                <button type="button" onClick={handleAddIncorrect} className="add-question__add-button">Dodaj</button>
             </div>
-            <button type="submit" onClick={handleQuestionSave}>Zapisz</button>
-            <button type="button" onClick={() => manageQuizSetSubpage("Questions")}>Anuluj</button>
+            <div className="add-question__buttons">
+                <button type="submit" onClick={handleQuestionSave} className="add-question__save-button">Zapisz</button>
+                <button type="button" onClick={() => manageQuizSetSubpage("Questions")} className="add-question__cancel-button">Anuluj</button>
+            </div>
         </form>
     </div>
 }

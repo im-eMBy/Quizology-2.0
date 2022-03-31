@@ -4,6 +4,7 @@ import { removeQuestion } from "../../../firebase/quiz-managment/questionsManagm
 import { Question } from "../../../shared/types";
 import { actionCreators } from "../../../state/action-creators";
 import { RootState } from "../../../state/reducers";
+import { SafeButton } from "../../shared/SafeButton";
 
 type Props = {
     question: Question
@@ -38,7 +39,7 @@ export const QuestionPreview: React.FC<Props> = ({ question }) => {
         </div>
         <div className="question-preview__buttons">
             <button onClick={handleQuestionEdit}>Edytuj</button>
-            <button onClick={handleQuestionRemove}>Usuń</button>
+            <SafeButton styleClass="question-preview__remove-button" onClick={handleQuestionRemove}>Usuń</SafeButton>
         </div>
 
     </div>

@@ -37,11 +37,11 @@ export const ManageQuiz: React.FC<Props> = ({ switchSubpage, quizId }) => {
     }
 
     return <>
-        <div className="container">
+        <div className="manage-quiz__general-info container">
             <h2>Zarządzenie Quizem</h2>
-            <h3>{quiz?.title}</h3>
-            <p>{quiz?.description}</p>
-            <button onClick={() => switchSubpage("General")}>Powrót</button>
+            <h3>Tytuł: {quiz?.title}</h3>
+            <p>Opis: {quiz?.description}</p>
+            <button onClick={() => switchSubpage("General")}>&#10094; Powrót</button>
         </div>
         {getContent()}
     </>
