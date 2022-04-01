@@ -1,6 +1,6 @@
 import { ActionTypes, AppAction, SuggestAction, AdminAction, QuizAction, ManageQuizAction } from "../action-types";
 import { Dispatch } from "redux";
-import { Category, Question, Quiz, QuizInfo, UserObject } from "../../shared/types";
+import { Question, Quiz, QuizInfo, UserObject } from "../../shared/types";
 
 //app
 export const appSetPage = (page: string) => {
@@ -141,13 +141,21 @@ export const suggestResetForm = () => {
     }
 }
 //quiz
-export const quizInit = (category: Category, nrOfQuestions: number, time: number) => {
+export const quizInit = (id: string, nrOfQuestions: number, time: number) => {
     return (dispatch: Dispatch<QuizAction>) => {
         dispatch({
             type: ActionTypes.QUIZ_INIT,
-            category: category,
+            id: id,
             time: time,
             nrOfQuestions: nrOfQuestions
+        })
+    }
+}
+export const quizSetQuizObject = (quiz: Quiz) => {
+    return (dispatch: Dispatch<QuizAction>) => {
+        dispatch({
+            type: ActionTypes.QUIZ_SET_QUIZ_OBJECT,
+            quiz: quiz
         })
     }
 }

@@ -1,0 +1,17 @@
+@import "./mixins";
+
+.user-name-form__container {
+    margin: 30px 5% 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    input {
+        width: 300px;
+        max-width: 100%;
+    }
+    button {
+        @include button-with-border;
+        padding: 5px 15px;
+    }
+}

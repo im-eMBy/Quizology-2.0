@@ -15,7 +15,7 @@ export const QuizList: React.FC<Props> = ({ switchSubpage, setManagedQuiz }) => 
 
     const getList = () => {
         return userQuizzes.map(quiz => {
-            return <QuizPreview quizInfo={quiz} switchSubpage={switchSubpage} setManagedQuiz={setManagedQuiz} />
+            return <QuizPreview key={quiz.id} quizInfo={quiz} switchSubpage={switchSubpage} setManagedQuiz={setManagedQuiz} />
         })
     }
 

@@ -25,7 +25,8 @@
             display: flex;
             align-items: center;
             gap: 5px;
-            button, p {
+            button,
+            p {
                 white-space: nowrap;
             }
         }
@@ -50,25 +51,31 @@
     flex-direction: column;
     align-items: center;
     .question-preview__answers {
+        width: 100%;
         display: flex;
         justify-content: center;
         gap: 20px;
         padding: 10px;
         .question-preview__correct-list,
         .question-preview__incorrect-list {
+            max-width: 75%;
             padding: 0;
             display: flex;
             gap: 10px;
             flex-wrap: wrap;
             list-style: none;
             align-items: center;
+            justify-content: flex-start;
             li {
                 padding: 5px 10px;
                 border-radius: 1em;
             }
         }
-        .question-preview__correct-list li {
-            border: 2px solid $color-green-secondary;
+        .question-preview__correct-list {
+            justify-content: flex-end;
+            li {
+                border: 2px solid $color-green-secondary;
+            }
         }
         .question-preview__incorrect-list li {
             border: 2px solid $color-red-secondary;

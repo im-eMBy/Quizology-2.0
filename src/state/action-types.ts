@@ -22,6 +22,7 @@ export enum ActionTypes {
     SUGGEST_RESET_FORM = "suggestResetForm",
 
     QUIZ_INIT = "quizInit",
+    QUIZ_SET_QUIZ_OBJECT = "quizSetQuizObject",
     QUIZ_SET_QUESTIONS = "quizSetQuestions",
     QUIZ_SET_CURRENT_QUESTION = "quizSetCurrentQuestion",
     QUIZ_SET_IS_ANSWER_CLICKED = "quizSetIsAnswerClicked",
@@ -109,9 +110,13 @@ export type ActionSuggestResetForm = {
 //quiz
 export type ActionQuizInit = {
     type: ActionTypes.QUIZ_INIT,
-    category: Category,
+    id: string,
     time: number,
     nrOfQuestions: number
+}
+export type ActionQuizSetQuizObject = {
+    type: ActionTypes.QUIZ_SET_QUIZ_OBJECT,
+    quiz: Quiz
 }
 export type ActionQuizSetQuestions = {
     type: ActionTypes.QUIZ_SET_QUESTIONS,
@@ -162,6 +167,6 @@ export type SuggestAction = ActionSuggestSetIsValid | ActionSuggestSetCategory |
 
 export type AdminAction = ActionAdminSetSubPage | ActionAdminSetPassword
 
-export type QuizAction = ActionQuizInit | ActionQuizSetQuestions | ActionQuizSetCurrentQuestion | ActionQuizSetIsAnswerClicked | ActionQuizTakeTime | ActionQuizAddCorrect | ActionQuizAddIncorrect | ActionQuizAddAnswer | ActionQuizEnd | ActionQuizReset
+export type QuizAction = ActionQuizInit | ActionQuizSetQuestions | ActionQuizSetCurrentQuestion | ActionQuizSetIsAnswerClicked | ActionQuizTakeTime | ActionQuizAddCorrect | ActionQuizAddIncorrect | ActionQuizAddAnswer | ActionQuizEnd | ActionQuizReset | ActionQuizSetQuizObject
 
 export type Action = AppAction | SuggestAction | QuizAction | AdminAction | ManageQuizAction
