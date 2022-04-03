@@ -1,0 +1,174 @@
+@import "./mixins";
+@import "./colors";
+
+.my-quizzes__container {
+    button {
+        @include button-with-border;
+    }
+    button {
+        padding: 5px 10px;
+    }
+    .container {
+        margin: 30px 5% 0;
+    }
+}
+.quiz-list__container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    .quiz-list__quiz-preview {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 15px;
+        .quiz-preview__buttons {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            button,
+            p {
+                white-space: nowrap;
+            }
+        }
+    }
+}
+.manage-quiz__general-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    div {
+        height: 1.4em;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    .switch-button {
+        align-self: flex-end;
+        background-color: $color-red-secondary;
+        padding: 0;
+        border: none;
+        &--active {
+            background-color: $color-green-secondary;
+        }
+    }
+}
+.manage-quiz__questions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.manage-quiz__question-preview {
+    padding: 10px;
+    border: 2px solid $color-blue-primary;
+    border-radius: 1em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .question-preview__answers {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        padding: 10px;
+        .question-preview__correct-list,
+        .question-preview__incorrect-list {
+            max-width: 75%;
+            padding: 0;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            list-style: none;
+            align-items: center;
+            justify-content: flex-start;
+            li {
+                padding: 5px 10px;
+                border-radius: 1em;
+            }
+        }
+        .question-preview__correct-list {
+            justify-content: flex-end;
+            li {
+                border: 2px solid $color-green-secondary;
+            }
+        }
+        .question-preview__incorrect-list li {
+            border: 2px solid $color-red-secondary;
+        }
+    }
+    .question-preview__buttons {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        button {
+            color: $color-white;
+            background-color: $color-blue-primary;
+            border-color: $color-blue-primary;
+        }
+        .question-preview__remove-button {
+            color: $color-white;
+            background-color: $color-red-secondary;
+            border-color: $color-red-secondary;
+        }
+    }
+}
+.add-question__form {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    gap: 15px;
+    .add-question__text {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
+    }
+    .add-question__correct-answers,
+    .add-question__incorrect-answers {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
+    }
+    .add-question__correct-answer,
+    .add-question__incorrect-answer {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        input {
+            font-family: DosisSemibold, sans-serif;
+            padding: 5px 10px;
+            font-size: 1rem;
+            line-height: 1em;
+        }
+        .add-question__remove-button {
+            padding: 5px 10px;
+            border-color: $color-red-secondary;
+            color: $color-red-secondary;
+        }
+    }
+    .add-question__correct-answer input {
+        border-color: $color-green-secondary;
+    }
+    .add-question__incorrect-answer input {
+        border-color: $color-red-secondary;
+    }
+    .add-question__buttons {
+        display: flex;
+        justify-content: center;
+        gap: 5px;
+        align-items: center;
+        .add-question__cancel-button {
+            color: $color-white;
+            background-color: $color-red-secondary;
+            border-color: $color-red-secondary;
+        }
+        .add-question__save-button {
+            color: $color-white;
+            background-color: $color-green-secondary;
+            border-color: $color-green-secondary;
+        }
+    }
+}

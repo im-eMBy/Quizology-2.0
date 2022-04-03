@@ -1,9 +1,9 @@
-import { ActionTypes, AppAction, SuggestAction, AdminAction, QuizAction } from "../action-types";
+import { ActionTypes, AppAction, QuizAction, ManageQuizAction } from "../action-types";
 import { Dispatch } from "redux";
-import { Category, Question } from "../../shared/types";
+import { Question, Quiz, QuizInfo, UserObject } from "../../shared/types";
 
 //app
-export const appSetPage = (page: "Play" | "Suggest" | "Admin") => {
+export const appSetPage = (page: string) => {
     return (dispatch: Dispatch<AppAction>) => {
         dispatch({
             type: ActionTypes.APP_SET_PAGE,
@@ -11,11 +11,19 @@ export const appSetPage = (page: "Play" | "Suggest" | "Admin") => {
         })
     }
 }
-export const appSetCategories = (categories: []) => {
+export const appSetUser = (user: UserObject | null) => {
     return (dispatch: Dispatch<AppAction>) => {
         dispatch({
-            type: ActionTypes.APP_SET_CATEGORIES,
-            categories: categories
+            type: ActionTypes.APP_SET_USER,
+            user: user
+        })
+    }
+}
+export const appSetQuizzesInfo = (quizzesInfo: QuizInfo[]) => {
+    return (dispatch: Dispatch<AppAction>) => {
+        dispatch({
+            type: ActionTypes.APP_SET_QUIZZES_INFO,
+            quizzesInfo: quizzesInfo
         })
     }
 }
@@ -27,86 +35,47 @@ export const appSetQuizActive = (isActive: boolean) => {
         })
     }
 }
-//suggest
-export const suggestSetIsValid = (isValid: boolean) => {
-    return (dispatch: Dispatch<SuggestAction>) => {
+//manage quiz
+export const manageQuizSetQuiz = (quiz: Quiz) => {
+    return (dispatch: Dispatch<ManageQuizAction>) => {
         dispatch({
-            type: ActionTypes.SUGGEST_SET_IS_VALID,
-            isValid: isValid
+            type: ActionTypes.MANAGE_QUIZ_SET_QUIZ,
+            quiz: quiz
         })
     }
 }
-export const suggestSetCategory = (category: string) => {
-    return (dispatch: Dispatch<SuggestAction>) => {
+export const manageQuizSetSubpage = (subpage: string) => {
+    return (dispatch: Dispatch<ManageQuizAction>) => {
         dispatch({
-            type: ActionTypes.SUGGEST_SET_CATEGORY,
-            category: category
+            type: ActionTypes.MANAGE_QUIZ_SET_SUBPAGE,
+            subpage: subpage
         })
     }
 }
-export const suggestSetDisplayedCategory = (displayedCategory: string) => {
-    return (dispatch: Dispatch<SuggestAction>) => {
+export const manageQuizSetEditedQuestion = (question: Question) => {
+    return (dispatch: Dispatch<ManageQuizAction>) => {
         dispatch({
-            type: ActionTypes.SUGGEST_SET_DISPLAYED_CATEGORY,
-            displayedCategory: displayedCategory
-        })
-    }
-}
-export const suggestSetText = (text: string) => {
-    return (dispatch: Dispatch<SuggestAction>) => {
-        dispatch({
-            type: ActionTypes.SUGGEST_SET_TEXT,
-            text: text
-        })
-    }
-}
-export const suggestAddCorrect = (correct: string) => {
-    return (dispatch: Dispatch<SuggestAction>) => {
-        dispatch({
-            type: ActionTypes.SUGGEST_ADD_CORRECT,
-            correct: correct
-        })
-    }
-}
-export const suggestRemoveCorrect = (correct: string) => {
-    return (dispatch: Dispatch<SuggestAction>) => {
-        dispatch({
-            type: ActionTypes.SUGGEST_REMOVE_CORRECT,
-            correct: correct
-        })
-    }
-}
-export const suggestAddIncorrect = (incorrect: string) => {
-    return (dispatch: Dispatch<SuggestAction>) => {
-        dispatch({
-            type: ActionTypes.SUGGEST_ADD_INCORRECT,
-            incorrect: incorrect
-        })
-    }
-}
-export const suggestRemoveIncorrect = (incorrect: string) => {
-    return (dispatch: Dispatch<SuggestAction>) => {
-        dispatch({
-            type: ActionTypes.SUGGEST_REMOVE_INCORRECT,
-            incorrect: incorrect
-        })
-    }
-}
-export const suggestResetForm = () => {
-    return (dispatch: Dispatch<SuggestAction>) => {
-        dispatch({
-            type: ActionTypes.SUGGEST_RESET_FORM
+            type: ActionTypes.MANAGE_QUIZ_SET_EDITED_QUESTION,
+            question: question
         })
     }
 }
 //quiz
-export const quizInit = (category: Category, nrOfQuestions: number, time: number) => {
+export const quizInit = (id: string, nrOfQuestions: number, time: number) => {
     return (dispatch: Dispatch<QuizAction>) => {
         dispatch({
             type: ActionTypes.QUIZ_INIT,
-            category: category,
+            id: id,
             time: time,
             nrOfQuestions: nrOfQuestions
+        })
+    }
+}
+export const quizSetQuizObject = (quiz: Quiz) => {
+    return (dispatch: Dispatch<QuizAction>) => {
+        dispatch({
+            type: ActionTypes.QUIZ_SET_QUIZ_OBJECT,
+            quiz: quiz
         })
     }
 }
@@ -166,23 +135,6 @@ export const quizReset = () => {
     return (dispatch: Dispatch<QuizAction>) => {
         dispatch({
             type: ActionTypes.QUIZ_RESET
-        })
-    }
-}
-//admin
-export const adminSetSubPage = (subpage: "Propositions" | "Categories" | "AddCategory") => {
-    return (dispatch: Dispatch<AdminAction>) => {
-        dispatch({
-            type: ActionTypes.ADMIN_SET_SUB_PAGE,
-            subpage: subpage
-        })
-    }
-}
-export const adminSetPassword = (password: string) => {
-    return (dispatch: Dispatch<AdminAction>) => {
-        dispatch({
-            type: ActionTypes.ADMIN_SET_PASSWORD,
-            password: password
         })
     }
 }

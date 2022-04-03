@@ -24,9 +24,6 @@ body {
   width: 100%;
   flex-grow: 1;
   padding-bottom: 30px;
-  @media (max-width: 800px) {
-    background-size: 200% auto;
-  }
 }
 .container {
   background-color: $color-white;

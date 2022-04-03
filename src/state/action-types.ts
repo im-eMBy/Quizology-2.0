@@ -1,21 +1,17 @@
-import { Category, Question } from "../shared/types";
+import { Question, Quiz, QuizInfo, UserObject } from "../shared/types";
 
 export enum ActionTypes {
     APP_SET_PAGE = "appSetPage",
     APP_SET_QUIZ_ACTIVE = "appSetQuizActive",
-    APP_SET_CATEGORIES = "appSetCategories",
+    APP_SET_USER = "appSetUser",
+    APP_SET_QUIZZES_INFO = "appSetQuizzesInfo",
 
-    SUGGEST_SET_IS_VALID = "suggestSetIsValid",
-    SUGGEST_SET_CATEGORY = "suggestSetCategory",
-    SUGGEST_SET_DISPLAYED_CATEGORY = "suggestSetDisplayedCategory",
-    SUGGEST_SET_TEXT = "suggestSetText",
-    SUGGEST_ADD_CORRECT = "suggestAddCorrect",
-    SUGGEST_REMOVE_CORRECT = "suggestRemoveCorrect",
-    SUGGEST_ADD_INCORRECT = "suggestAddInorrect",
-    SUGGEST_REMOVE_INCORRECT = "suggestRemoveInorrect",
-    SUGGEST_RESET_FORM = "suggestResetForm",
+    MANAGE_QUIZ_SET_SUBPAGE = "manageQuizSetSubpage",
+    MANAGE_QUIZ_SET_QUIZ = "manageQuizSetQuiz",
+    MANAGE_QUIZ_SET_EDITED_QUESTION = "manageQuizSetEditedQuestion",
 
     QUIZ_INIT = "quizInit",
+    QUIZ_SET_QUIZ_OBJECT = "quizSetQuizObject",
     QUIZ_SET_QUESTIONS = "quizSetQuestions",
     QUIZ_SET_CURRENT_QUESTION = "quizSetCurrentQuestion",
     QUIZ_SET_IS_ANSWER_CLICKED = "quizSetIsAnswerClicked",
@@ -25,66 +21,48 @@ export enum ActionTypes {
     QUIZ_ADD_ANSWER = "quizAddAnswer",
     QUIZ_END = "quizEnd",
     QUIZ_RESET = "quizReset",
-
-    ADMIN_SET_PASSWORD = "adminSetPassword",
-    ADMIN_SET_SUB_PAGE = "adminSetSubPage",
 }
 
 //app
 export type ActionAppSetPage = {
     type: ActionTypes.APP_SET_PAGE,
-    page: "Play" | "Suggest" | "Admin"
+    page: string
 }
-export type ActionAppSetCategories = {
-    type: ActionTypes.APP_SET_CATEGORIES,
-    categories: Category[]
+export type ActionAppSetUser = {
+    type: ActionTypes.APP_SET_USER,
+    user: UserObject | null
+}
+export type ActionAppSetQuizzesInfo = {
+    type: ActionTypes.APP_SET_QUIZZES_INFO,
+    quizzesInfo: QuizInfo[]
 }
 export type ActionAppSetQuizActive = {
     type: ActionTypes.APP_SET_QUIZ_ACTIVE,
     isActive: boolean
 }
-//suggest
-export type ActionSuggestSetIsValid = {
-    type: ActionTypes.SUGGEST_SET_IS_VALID,
-    isValid: boolean
+//manage quiz
+export type ActionManageQuizSetQuiz = {
+    type: ActionTypes.MANAGE_QUIZ_SET_QUIZ,
+    quiz: Quiz
 }
-export type ActionSuggestSetCategory = {
-    type: ActionTypes.SUGGEST_SET_CATEGORY,
-    category: string
+export type ActionManageQuizSetSubpage = {
+    type: ActionTypes.MANAGE_QUIZ_SET_SUBPAGE,
+    subpage: string
 }
-export type ActionSuggestSetDisplayedCategory = {
-    type: ActionTypes.SUGGEST_SET_DISPLAYED_CATEGORY,
-    displayedCategory: string
-}
-export type ActionSuggestSetText = {
-    type: ActionTypes.SUGGEST_SET_TEXT,
-    text: string
-}
-export type ActionSuggestAddCorrect = {
-    type: ActionTypes.SUGGEST_ADD_CORRECT,
-    correct: string
-}
-export type ActionSuggestRemoveCorrect = {
-    type: ActionTypes.SUGGEST_REMOVE_CORRECT,
-    correct: string
-}
-export type ActionSuggestAddIncorrect = {
-    type: ActionTypes.SUGGEST_ADD_INCORRECT,
-    incorrect: string
-}
-export type ActionSuggestRemoveIncorrect = {
-    type: ActionTypes.SUGGEST_REMOVE_INCORRECT,
-    incorrect: string
-}
-export type ActionSuggestResetForm = {
-    type: ActionTypes.SUGGEST_RESET_FORM
+export type ActionManageQuizSetEditedQuestion = {
+    type: ActionTypes.MANAGE_QUIZ_SET_EDITED_QUESTION,
+    question: Question
 }
 //quiz
 export type ActionQuizInit = {
     type: ActionTypes.QUIZ_INIT,
-    category: Category,
+    id: string,
     time: number,
     nrOfQuestions: number
+}
+export type ActionQuizSetQuizObject = {
+    type: ActionTypes.QUIZ_SET_QUIZ_OBJECT,
+    quiz: Quiz
 }
 export type ActionQuizSetQuestions = {
     type: ActionTypes.QUIZ_SET_QUESTIONS,
@@ -117,21 +95,11 @@ export type ActionQuizEnd = {
 export type ActionQuizReset = {
     type: ActionTypes.QUIZ_RESET
 }
-//admin
-export type ActionAdminSetSubPage = {
-    type: ActionTypes.ADMIN_SET_SUB_PAGE,
-    subpage: "Propositions" | "Categories" | "AddCategory"
-}
-export type ActionAdminSetPassword = {
-    type: ActionTypes.ADMIN_SET_PASSWORD,
-    password: string
-}
-export type AppAction = ActionAppSetPage | ActionAppSetCategories | ActionAppSetQuizActive
 
-export type SuggestAction = ActionSuggestSetIsValid | ActionSuggestSetCategory | ActionSuggestSetDisplayedCategory | ActionSuggestSetText | ActionSuggestAddCorrect | ActionSuggestRemoveCorrect | ActionSuggestAddIncorrect | ActionSuggestRemoveIncorrect | ActionSuggestResetForm
+export type ManageQuizAction = ActionManageQuizSetQuiz | ActionManageQuizSetSubpage | ActionManageQuizSetEditedQuestion
 
-export type AdminAction = ActionAdminSetSubPage | ActionAdminSetPassword
+export type AppAction = ActionAppSetPage | ActionAppSetQuizActive | ActionAppSetUser | ActionAppSetQuizzesInfo
 
-export type QuizAction = ActionQuizInit | ActionQuizSetQuestions | ActionQuizSetCurrentQuestion | ActionQuizSetIsAnswerClicked | ActionQuizTakeTime | ActionQuizAddCorrect | ActionQuizAddIncorrect | ActionQuizAddAnswer | ActionQuizEnd | ActionQuizReset
+export type QuizAction = ActionQuizInit | ActionQuizSetQuestions | ActionQuizSetCurrentQuestion | ActionQuizSetIsAnswerClicked | ActionQuizTakeTime | ActionQuizAddCorrect | ActionQuizAddIncorrect | ActionQuizAddAnswer | ActionQuizEnd | ActionQuizReset | ActionQuizSetQuizObject
 
-export type Action = AppAction | SuggestAction | QuizAction | AdminAction
+export type Action = AppAction | QuizAction | ManageQuizAction

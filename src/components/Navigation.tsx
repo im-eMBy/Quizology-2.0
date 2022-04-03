@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { actionCreators } from '../state/action-creators';
 import { bindActionCreators } from 'redux';
-import { useDispatch } from 'react-redux';
 import { RootState } from "../state/reducers";
+import { authPagesData, unauthPagesData } from "../utilis/pages";
 
 import { NavigationMobile } from "./NavigationMobile"
 
@@ -12,7 +12,7 @@ import "../scss/_navigation.scss";
 export const Navigation: React.FC = () => {
     const dispatch = useDispatch();
     const { appSetPage } = bindActionCreators(actionCreators, dispatch);
-    const { page } = useSelector((state: RootState) => state.app);
+    const { page, user } = useSelector((state: RootState) => state.app);
     const [mobileNav, setMobileNav] = useState<boolean>(window.matchMedia("(max-width: 800px)").matches);
 
     useEffect(() => {
@@ -26,19 +26,14 @@ export const Navigation: React.FC = () => {
 
     const handleNavClick = (ev: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         const elementClicked = ev.target as HTMLButtonElement;
-        if (elementClicked.value === "Play" || elementClicked.value === "Suggest") {
-            appSetPage(elementClicked.value);
-        }
+        appSetPage(elementClicked.value);
     }
 
     const getNavigationList = (): JSX.Element => {
         return <ul className="navigation__list">
-            <li className="navigation__element">
-                <button onClick={handleNavClick} value="Play" style={page === "Play" ? { color: "#eb9115" } : undefined}>Graj</button>
-            </li>
-            <li className="navigation__element">
-                <button onClick={handleNavClick} value="Suggest" style={page === "Suggest" ? { color: "#eb9115" } : undefined}>Zaproponuj pytanie</button>
-            </li>
+            {(user ? authPagesData : unauthPagesData).map(el => <li className="navigation__element" key={el.name}>
+                <button onClick={handleNavClick} value={el.name} style={page === el.name ? { color: "#eb9115" } : undefined}>{el.displayedName}</button>
+            </li>)}
         </ul>
     }
 

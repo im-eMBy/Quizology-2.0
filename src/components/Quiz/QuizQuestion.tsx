@@ -10,7 +10,9 @@ import { correctAnimation, incorrectAnimation } from "./answerAnimations";
 
 export const QuizQuestion: React.FC = () => {
     const dispatch = useDispatch();
-    const { questions, currentQuestion, isAnswerClicked } = useSelector((state: RootState) => state.quiz);
+    const questions = useSelector((state: RootState) => state.quiz.questions);
+    const currentQuestion = useSelector((state: RootState) => state.quiz.currentQuestion);
+    const isAnswerClicked = useSelector((state: RootState) => state.quiz.isAnswerClicked);
     const { quizSetIsAnswerClicked, quizSetCurrentQuestion, quizAddCorrect, quizAddIncorrect, quizEnd } = bindActionCreators(actionCreators, dispatch);
     const [answers, setAnswers] = useState<string[]>([]);
     useEffect(() => {

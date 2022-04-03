@@ -1,11 +1,14 @@
 import { useState, useRef } from "react";
 import { actionCreators } from '../state/action-creators';
 import { bindActionCreators } from 'redux';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from "../state/reducers";
+import { authPagesData, unauthPagesData } from "../utilis/pages";
 
 export const NavigationMobile: React.FC = () => {
     const dispatch = useDispatch();
     const { appSetPage } = bindActionCreators(actionCreators, dispatch);
+    const user = useSelector((state: RootState) => state.app.user);
     const [menuOpen, setMenuOpen] = useState(false);
 
     const hamburgerElement = useRef<HTMLButtonElement>(null);
@@ -16,10 +19,15 @@ export const NavigationMobile: React.FC = () => {
     }
     const handleNavClick = (ev: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         const elementClicked = ev.target as HTMLButtonElement;
-        if(elementClicked.value === "Play" || elementClicked.value === "Suggest") {
-            appSetPage(elementClicked.value);
-        }
+        appSetPage(elementClicked.value);
+
         setMenuOpen(false);
+    }
+
+    const getNavElements = (): JSX.Element[] => {
+        return (user ? authPagesData : unauthPagesData).map(el => <li className="navigation__element" key={el.name}>
+            <button onClick={handleNavClick} value={el.name}>{el.displayedName}</button>
+        </li>)
     }
 
     return <>
@@ -31,12 +39,7 @@ export const NavigationMobile: React.FC = () => {
             </svg>
         </button>
         <ul className="navigation__mobile-list" style={menuOpen ? { top: "70px", visibility: "visible" } : { top: "-100%", visibility: "hidden" }}>
-            <li className="navigation__element">
-                <button onClick={handleNavClick} value="Play">Graj</button>
-            </li>
-            <li className="navigation__element">
-                <button onClick={handleNavClick} value="Suggest">Zaproponuj pytanie</button>
-            </li>
+            {getNavElements()}
         </ul>
     </>
 }

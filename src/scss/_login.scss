@@ -1,0 +1,28 @@
+@import "./mixins";
+
+.login-panel__container,
+.register-panel__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin: 30px 5% 0;
+    button {
+        @include button-with-border;
+    }
+}
+.login-panel__form,
+.register-panel__form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 400px;
+    label,
+    button {
+        margin-top: 10px;
+    }
+    input {
+        width: 300px;
+        max-width: 100%;
+    }
+}

@@ -1,10 +1,11 @@
-import { Category, Question } from "../../shared/types";
+import { Question, Quiz } from "../../shared/types";
 import { ActionTypes, QuizAction } from "../action-types";
 
 interface QuizState {
+    quizObject: Quiz | null,
+    id: string | null,
     isAnswerClicked: boolean,
     isQuizEnd: boolean,
-    category: Category | null,
     nrOfQuestions: number,
     questions: Question[],
     currentQuestion: Question | null,
@@ -16,9 +17,10 @@ interface QuizState {
 }
 
 const initialState: QuizState = {
+    quizObject: null,
+    id: null,
     isQuizEnd: false,
     isAnswerClicked: false,
-    category: null,
     nrOfQuestions: 3,
     questions: [],
     currentQuestion: null,
@@ -32,7 +34,9 @@ const initialState: QuizState = {
 export const quizReducer = (state: QuizState = initialState, action: QuizAction) => {
     switch (action.type) {
         case ActionTypes.QUIZ_INIT:
-            return { ...state, category: action.category, nrOfQuestions: action.nrOfQuestions, time: action.time, initialTime: action.time }
+            return { ...state, id: action.id, nrOfQuestions: action.nrOfQuestions, time: action.time, initialTime: action.time }
+        case ActionTypes.QUIZ_SET_QUIZ_OBJECT:
+            return { ...state, quizObject: action.quiz }
         case ActionTypes.QUIZ_SET_QUESTIONS:
             return { ...state, questions: action.questions }
         case ActionTypes.QUIZ_SET_CURRENT_QUESTION:
