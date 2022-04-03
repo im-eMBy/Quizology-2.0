@@ -9,7 +9,8 @@ export const addQuiz = async (data: Quiz) => {
         author: data.author,
         authorId: data.authorId,
         title: data.title,
-        description: data.description
+        description: data.description,
+        isVisible: data.isVisible
     });
     await addQuizToUserObject(data.authorId, data.id);
 }

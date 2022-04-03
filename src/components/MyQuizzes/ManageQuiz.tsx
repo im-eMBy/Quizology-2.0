@@ -3,8 +3,10 @@ import { useDispatch, useSelector } from "react-redux"
 import { bindActionCreators } from "redux";
 import { getQuizAndListen } from "../../firebase/getQuiz";
 import { actionCreators } from "../../state/action-creators";
-import { RootState } from "../../state/reducers"
+import { RootState } from "../../state/reducers";
+
 import { AddQuestion } from "./ManageQuiz/AddQuestion";
+import { QuizGeneralInfo } from "./ManageQuiz/QuizGeneralInfo";
 import { QuestionsList } from "./ManageQuiz/QuestionsList";
 
 type Props = {
@@ -37,12 +39,7 @@ export const ManageQuiz: React.FC<Props> = ({ switchSubpage, quizId }) => {
     }
 
     return <>
-        <div className="manage-quiz__general-info container">
-            <h2>Zarządzenie Quizem</h2>
-            <h3>Tytuł: {quiz?.title}</h3>
-            <p>Opis: {quiz?.description}</p>
-            <button onClick={() => switchSubpage("General")}>&#10094; Powrót</button>
-        </div>
+        <QuizGeneralInfo switchSubpage={switchSubpage} />
         {getContent()}
     </>
 }

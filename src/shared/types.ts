@@ -10,6 +10,7 @@ export type Quiz = {
     author: string,
     title: string,
     description: string,
+    isVisible: boolean,
     questions: Question[],
     questionStats: []
 }
@@ -18,7 +19,8 @@ export type QuizInfo = {
     authorId: string,
     author: string,
     title: string,
-    description: string
+    description: string,
+    isVisible: boolean
 }
 export type UserObject = {
     uid: string,

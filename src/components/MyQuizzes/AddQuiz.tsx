@@ -25,6 +25,7 @@ export const AddQuiz: React.FC<Props> = ({ switchSubpage }) => {
             authorId: user.uid,
             title: title.trim(),
             description: description.trim(),
+            isVisible: false,
             questions: [],
             questionStats: []
         }

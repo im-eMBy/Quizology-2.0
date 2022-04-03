@@ -15,14 +15,17 @@ export const Play: React.FC = () => {
         appSetQuizActive(true);
     }
 
-    const getCategories = (): JSX.Element[] => {
-        return quizzesInfo.map(quiz => <div key={quiz.title} className="play__category">
-            <h2 className="play__category-name">{quiz.title}</h2>
-            <p>{quiz.description}</p>
-            <button onClick={() => handleQuizStart(quiz.id, 5, 30)}>Szybka - 5 pytań | 30s</button>
-            <button onClick={() => handleQuizStart(quiz.id, 10, 90)}>Normalna - 10 pytań | 90s</button>
-            <button onClick={() => handleQuizStart(quiz.id, 10, 30)}>Blitz - 10 pytań | 30s</button>
-        </div>)
+    const getCategories = (): (JSX.Element | null)[] => {
+        return quizzesInfo.map(quiz => {
+            if (!quiz.isVisible) return null;
+            return <div key={quiz.title} className="play__category">
+                <h2 className="play__category-name">{quiz.title}</h2>
+                <p>{quiz.description}</p>
+                <button onClick={() => handleQuizStart(quiz.id, 5, 30)}>Szybka - 5 pytań | 30s</button>
+                <button onClick={() => handleQuizStart(quiz.id, 10, 90)}>Normalna - 10 pytań | 90s</button>
+                <button onClick={() => handleQuizStart(quiz.id, 10, 30)}>Blitz - 10 pytań | 30s</button>
+            </div>
+        })
     }
 
     return <>
