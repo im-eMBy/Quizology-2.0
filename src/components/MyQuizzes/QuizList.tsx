@@ -21,6 +21,6 @@ export const QuizList: React.FC<Props> = ({ switchSubpage, setManagedQuiz }) => 
 
     return <div className="quiz-list__container container">
         {getList()}
-        <button onClick={() => switchSubpage("Add")}>Stwórz Quiz</button>
+        {userQuizzes.length < 5 ? <button onClick={() => switchSubpage("Add")}>Stwórz Quiz</button> : <p>Posiadasz maksymalną ilość quizów.</p>}
     </div>
 }

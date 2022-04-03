@@ -1,7 +1,10 @@
 import { FormEvent, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { bindActionCreators } from "redux";
 import { addQuiz } from "../../firebase/quiz-managment/addQuiz";
+import { getQuizzesInfo } from "../../firebase/quizzesInfo";
 import { Quiz } from "../../shared/types";
+import { actionCreators } from "../../state/action-creators";
 import { RootState } from "../../state/reducers";
 import { generateId } from "../../utilis/generateId";
 
@@ -10,6 +13,8 @@ type Props = {
 }
 
 export const AddQuiz: React.FC<Props> = ({ switchSubpage }) => {
+    const dispatch = useDispatch();
+    const { appSetQuizzesInfo } = bindActionCreators(actionCreators, dispatch);
     const user = useSelector((state: RootState) => state.app.user);
     const [title, setTitle] = useState<string>("");
     const [description, setDescription] = useState<string>("");
@@ -30,6 +35,7 @@ export const AddQuiz: React.FC<Props> = ({ switchSubpage }) => {
             questionStats: []
         }
         await addQuiz(quiz);
+        await getQuizzesInfo(appSetQuizzesInfo);
         switchSubpage("General");
     }
 
