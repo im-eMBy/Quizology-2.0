@@ -29,19 +29,3 @@ export type UserObject = {
     quizzes: string[],
     results: []
 }
-
-
-
-export type Category = {
-    name: string,
-    displayName: string,
-    visible: boolean,
-    playable: boolean
-}
-export type QuestionProposition = {
-    category: string | null,
-    displayedCategory: string | null,
-    text: string,
-    correct: string[],
-    incorrect: string[]
-}

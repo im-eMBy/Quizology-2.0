@@ -14,21 +14,13 @@ Quizology is a quiz app, initialy created as my final project during CoderLab's 
 - add and delete categories
 - accept and reject suggested questions
 
-## Stack
-- SCSS
+## Used technologies:
 - Typescript
 - React
 - Redux
+- SCSS
 - Firebase
 
-## To do:
+## To do list:
 - welcome page
 - admin authentication through firebase
-### In the future:
-- Users accounts
-- Statistics
-- Visual themes
-
-## Admin preview
-
-![Admin page preview](./readme-img/admin-add-category.png)

@@ -17,7 +17,6 @@ import { UserNameForm } from "./components/UserNameForm";
 import { Login } from "./pages/Login";
 import { Profile } from "./pages/Profile";
 import { Play } from "./pages/Play";
-import { AdminPanel } from "./pages/AdminPanel";
 import { Quiz } from "./pages/Quiz";
 import { MyQuizzes } from "./pages/MyQuizzes";
 
@@ -57,16 +56,6 @@ const App: React.FC = () => {
     getQuizzesInfo(callback);
   }, [appSetQuizzesInfo, dispatch]);
 
-  // useEffect(() => {
-  //   const fetchCategories = async () => {
-  //     const categories = await getCategories();
-  //     dispatch(appSetCategories(categories));
-  //     setIsLoaded(true);
-  //   }
-  //   fetchCategories()
-  //     .catch(console.error);
-  // }, [appSetCategories, dispatch]);
-
   const getContent = (): JSX.Element => {
     if (!isLoaded) return <h1>Loading</h1>
     if (user?.name === "Gość") return <UserNameForm />
@@ -75,8 +64,6 @@ const App: React.FC = () => {
         return <Play />
       case "MyQuizzes":
         return <MyQuizzes />
-      case "Admin":
-        return <AdminPanel />
       case "Login":
         return <Login />
       case "Profile":
